@@ -1,0 +1,28 @@
+.inputs input {
+	width: 40px;
+	height: 40px;
+}
+input[type="password"]::-webkit-inner-spin-button,
+input[type="password"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	margin: 0;
+}
+.otp-form {
+	background-color: transparent;
+	box-shadow: none;
+	box-shadow: none;
+	border-left: none;
+	border-top: none;
+	border-right: none;
+	border-bottom: 2px solid #25282b;
+}
+.otp-form:focus {
+	background-color: transparent;
+	box-shadow: none;
+	border-left: none;
+	border-top: none;
+	border-right: none;
+	border-bottom: 2px solid #32a02d;
+}

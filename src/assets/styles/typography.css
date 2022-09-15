@@ -1,0 +1,205 @@
+.semibold {
+	font-weight: 600;
+}
+.headline1 {
+	font-size: 92px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+.headline2 {
+	font-size: 57px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+.headline3 {
+	font-size: 46px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+.headline4 {
+	font-size: 32px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+.headline5 {
+	font-size: 23px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+.headline6 {
+	font-size: 19px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+
+.subtitle1 {
+	font-size: 15px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+.subtitle2 {
+	font-size: 13px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+
+.bodytext1 {
+	font-size: 16px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+.bodytext2 {
+	font-size: 14px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+
+.buttontext {
+	font-size: 14px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+.caption {
+	font-size: 12px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+.overline {
+	font-size: 10px !important;
+	font-family: "Open Sans", sans-serif !important;
+}
+
+/* CUSTOM COLOR */
+.color-green500 {
+	color: #32a02d !important;
+}
+
+.color-black50 {
+	color: #f7f7fa !important;
+}
+.color-black100 {
+	/* color: #f1f1f1 !important; */
+	color: #d1d2d2 !important;
+}
+.color-black200 {
+	/* color: #e8e8e8 !important; */
+	color: #c4c8cb !important;
+}
+.color-black300 {
+	/* color: #cacccf !important; */
+	color: #757778 !important;
+}
+.color-black400 {
+	/* color: #a0a4a8 !important; */
+	color: #47494c !important;
+}
+.color-black500 {
+	/* color: #52575c !important; */
+	color: #191c1f !important;
+}
+.color-black600 {
+	/* color: #25282b !important; */
+	color: #141619 !important;
+}
+.color-black700 {
+	/* color: #000000 !important; */
+	color: #0f1112 !important;
+}
+.color-black800 {
+	/* color: #000000 !important; */
+	color: #0a0b0c !important;
+}
+.color-black900 {
+	/* color: #000000 !important; */
+	color: #050606 !important;
+}
+.color-orange100 {
+	color: #feead2 !important;
+}
+.color-orange200 {
+	color: #fdd0a6 !important;
+}
+.color-orange300 {
+	color: #f9ae78 !important;
+}
+.color-orange400 {
+	color: #f38e56 !important;
+}
+.color-orange500 {
+	color: #ec5b21 !important;
+}
+.color-orange600 {
+	color: #ca3f18 !important;
+}
+.color-orange700 {
+	color: #a92710 !important;
+}
+.color-orange800 {
+	color: #88140a !important;
+}
+.color-orange900 {
+	color: #710706 !important;
+}
+
+/* CUSTOM BACKGROUND */
+.background-green500 {
+	background-color: #32a02d !important;
+}
+
+.background-transparent {
+	background-color: transparent !important;
+}
+.background-black50 {
+	background-color: #f7f7fa !important;
+}
+.background-black100 {
+	/* background-color: #f1f1f1 !important; */
+	background-color: #d1d2d2 !important;
+}
+.background-black200 {
+	/* background-color: #e8e8e8 !important; */
+	background-color: #c4c8cb !important;
+}
+.background-black300 {
+	/* background-color: #cacccf !important; */
+	background-color: #757778 !important;
+}
+.background-black400 {
+	/* background-color: #a0a4a8 !important; */
+	background-color: #47494c !important;
+}
+.background-black500 {
+	/* background-color: #52575c !important; */
+	background-color: #52575c !important;
+}
+.background-black600 {
+	/* background-color: #25282b !important; */
+	background-color: #141619 !important;
+}
+.background-black700 {
+	/* background-color: #000000 !important; */
+	background-color: #0f1112 !important;
+}
+.background-black800 {
+	/* background-color: #000000 !important; */
+	background-color: #0a0b0c !important;
+}
+.background-black900 {
+	/* background-color: #000000 !important; */
+	background-color: #050606 !important;
+}
+.background-orange100 {
+	background-color: #feead2 !important;
+}
+.background-orange200 {
+	background-color: #fdd0a6 !important;
+}
+.background-orange300 {
+	background-color: #f9ae78 !important;
+}
+.background-orange400 {
+	background-color: #f38e56 !important;
+}
+.background-orange500 {
+	background-color: #ec5b21 !important;
+}
+.background-orange600 {
+	background-color: #ca3f18 !important;
+}
+.background-orange700 {
+	background-color: #a92710 !important;
+}
+.background-orange800 {
+	background-color: #88140a !important;
+}
+.background-orange900 {
+	background-color: #710706 !important;
+}
