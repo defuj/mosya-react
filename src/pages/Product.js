@@ -30,6 +30,7 @@ const Product = () => {
             let result = response.data;
             if(result.status){
                 setCar(result.data);
+                console.log(result.data);
                 if(result.data.image.length > 0){
                     new Swiper(".carSlider", {
                         slidesPerView: 'auto',
@@ -252,8 +253,8 @@ const Product = () => {
             </div>
             }
         </main>
-        <Footer withNavigation={car !== null && car.status === 'Ready'}/>
-        {car !== null && car.status === 'Ready' && 
+        <Footer withNavigation={car !== null && car.status === 'Ready' && car.color.length > 0}/>
+        {car !== null && car.status === 'Ready' && car.color.length > 0 && 
         <>
         <nav className="navbar bottom-nav-buy fixed-bottom navbar-expand bg-white px-3 py-3 shadow-sm col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 text-center m-auto">
             <form className="text-decoration-none d-flex flex-fill">

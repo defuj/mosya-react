@@ -45,7 +45,7 @@ const App = () => {
   }
   useEffect(() => {
     configClass();
-  }, []);
+  }, [configClass]);
 
   return (
     <Routes>

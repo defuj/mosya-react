@@ -150,8 +150,6 @@ export const getColorSelected = () => {
 }
 
 export const checkAccount = () => {
-    const pathname = window.location.pathname;
-    setLastPage(pathname);
     if (storageAvailable('localStorage')) {
         if(localStorage.getItem('account') !== null){
             var user = getAccount();

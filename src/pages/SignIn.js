@@ -13,6 +13,7 @@ const Signin = () => {
 		document.getElementById('body').classList.remove('py-0');
 		document.getElementById('body').classList.remove('flex-column');
 		document.getElementById('body').classList.add('text-center');
+		console.log(`last page : ${getLastPage()}`);
     }, []);
 
 	const [onProgress, setProgress] = useState(false);

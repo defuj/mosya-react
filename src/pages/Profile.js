@@ -6,10 +6,12 @@ import '../assets/styles/home.css';
 import { checkAccount, deleteAccount, getAccount } from "../helper/session";
 import Loading from "../components/Loading";
 import Swal from "sweetalert2";
+import axios, { historylist } from "../helper/axios";
 
 const Profile = () => {
     const [account, setAccount] = useState(getAccount);
     const [loading, setLoading] = useState(true);
+    const [history, setHistory] = useState([]);
 
     const signOut = () => {
         Swal.fire({
@@ -47,11 +49,15 @@ const Profile = () => {
                 <div className="container-spec d-flex align-content-between flex-wrap mt-3 mb-3 data-spec" id="data-spec">
                   <div className="spec-item flex-column flex-fill justify-content-start m-0 mr-1 p-3 radius-16">
                     <p className="bodytext2 color-black300 mb-2">Pesanan Diproses</p>
-                    <p className="headline5 color-black500 semibold mb-0" id="dataProcess">0</p>
+                    <p className="headline5 color-black500 semibold mb-0" id="dataProcess">
+                        {history.filter((item) => item.status !== 'Selesai' && item.status !== 'Batal' && item.status !== 'Belum Bayar').length}
+                    </p>
                   </div>
                   <div className="spec-item flex-column flex-fill justify-content-start m-0 ml-1 p-3 radius-16">
                     <p className="bodytext2 color-black300 mb-2">Pesanan Selesai</p>
-                    <p className="headline5 color-black500 semibold mb-0" id="dataFinished">0</p>
+                    <p className="headline5 color-black500 semibold mb-0" id="dataFinished">
+                        {history.filter((item) => item.status === 'Selesai').length}
+                    </p>
                   </div>
                   <div className="spec-item flex-column flex-fill justify-content-column m-0 mt-3 p-3 radius-16">
                     <p className="bodytext1 color-black500 semibold mb-2 flex-fill w-100">Pengaturan Akun</p>
@@ -83,11 +89,26 @@ const Profile = () => {
         )
     }
 
+    const getHistory = () => {
+      axios.get(`${historylist}?id=${account.id}`)
+        .then(response => {
+            let result = response.data;
+            if(result.status){
+                setHistory(result.data);
+            }else{
+                setHistory([]);
+            }
+        }).catch(error => {
+            setHistory([]);
+        });
+    }
+
     useEffect(() => {
         document.title = "Profil";
         if(checkAccount()){
             setLoading(false);
             setAccount(getAccount);
+            getHistory();
         }else{
             window.location.replace('/signin');
         }
