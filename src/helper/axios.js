@@ -24,3 +24,4 @@ export const orderpaymentinfo = 'booking/payment_info';
 export const orderuploadpayment = 'booking/payment_upload';
 export const orderdetail = 'history/detail';
 export const orderconfirm = 'history/confirm';
+export const ordertracking = 'history/tracking';

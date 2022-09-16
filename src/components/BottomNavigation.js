@@ -7,7 +7,7 @@ const BottomNavigation = () => {
 
     return (
         <nav className="navbar bottom-nav fixed-bottom navbar-expand bg-white shadow-sm col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 text-center m-auto">
-            <Link to="/home" className={pathname === '/home' ? 'bottom-nav-item mb-0 text-decoration-none active' : 'bottom-nav-item mb-0 text-decoration-none'}>
+            <Link to="/home"  className={pathname === '/home' ? 'bottom-nav-item mb-0 text-decoration-none active' : 'bottom-nav-item mb-0 text-decoration-none'}>
                 <div className="bottom-nav-link">
                 <p>
                     <i className="fi fi-rr-home unselected"></i>
@@ -16,7 +16,7 @@ const BottomNavigation = () => {
                 <span>Beranda</span>
                 </div>
             </Link>
-            <Link to="/home/catalog" className={pathname === '/home/catalog' ? 'bottom-nav-item mb-0 text-decoration-none active' : 'bottom-nav-item mb-0 text-decoration-none'}>
+            <Link to="/home/catalog"  className={pathname === '/home/catalog' ? 'bottom-nav-item mb-0 text-decoration-none active' : 'bottom-nav-item mb-0 text-decoration-none'}>
                 <div className="bottom-nav-link">
                 <p>
                     <i className="fi fi-rr-car-alt unselected"></i>
@@ -25,7 +25,7 @@ const BottomNavigation = () => {
                 <span>Katalog</span>
                 </div>
             </Link>
-            <Link to="/home/history" className={pathname === '/home/history' ? 'bottom-nav-item mb-0 text-decoration-none active' : 'bottom-nav-item mb-0 text-decoration-none'}>
+            <Link to="/home/history"  className={pathname === '/home/history' ? 'bottom-nav-item mb-0 text-decoration-none active' : 'bottom-nav-item mb-0 text-decoration-none'}>
                 <div className="bottom-nav-link">
                 <p>
                     <i className="fi fi-rr-ballot unselected"></i>
@@ -34,7 +34,7 @@ const BottomNavigation = () => {
                 <span>Riwayat</span>
                 </div>
             </Link>
-            <Link to="/home/profile" className={pathname === '/home/profile' ? 'bottom-nav-item mb-0 text-decoration-none active' : 'bottom-nav-item mb-0 text-decoration-none'}>
+            <Link to="/home/profile"  className={pathname === '/home/profile' ? 'bottom-nav-item mb-0 text-decoration-none active' : 'bottom-nav-item mb-0 text-decoration-none'}>
                 <div className="bottom-nav-link">
                 <p>
                     <i className="fi fi-rr-user unselected"></i>

@@ -103,9 +103,9 @@ const OrderDetail = () => {
         <>
         <nav className="navbar fixed-top bg-white border-bottom shadow-sm px-0">
             <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 m-auto d-flex justify-content-start align-items-center flex-row py-0 px-xl-3 px-lg-3 px-md-3 px-sm-3 px-3">
-                <a className="navbar-brand" title="back" onClick={() => navigate('/home/history')}>
+                <Link to="/home/history" className="navbar-brand" title="back">
                     <i className="fi fi-sr-angle-left color-black400 headline6"></i>
-                </a>
+                </Link>
                 <p className="mb-0 bodytext1 semibold color-black500 px-2">Detail Pemesanan</p>
             </div>
         </nav>

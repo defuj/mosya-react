@@ -147,8 +147,6 @@ const Home = () => {
                 </Link>
             </div>
 
-            {banner.length === 0 && brand.length === 0 && car.length === 0 && <Loading/>}
-
             <form action="products" onSubmit={onSearch} method="get" className="form-search container-search mx-3 mb-4 d-flex justify-content-between align-items-center" style={{height: '48px'}}>
                 <div className="input-group-search bg-white h-100">
                     <input onChange={e => setKeyword(e.target.value)} type="text" name="search" className=" bodytext1 color-black800" placeholder="Cari mobil di sini ..." required/>
@@ -158,6 +156,7 @@ const Home = () => {
                 </button>
             </form>
 
+            { banner.length === 0 && brand.length === 0 && car.length === 0 && <Loading/>}
             { banner.length > 0 && <ImageSlider banner={banner}/>}
             { brand.length > 0 && <BrandSlider brand={brand}/>}
             { car.length > 0 && <CarSection car={car}/>}

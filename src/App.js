@@ -4,7 +4,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import {checkAccount} from './helper/session';
+import {checkAccount, safeString} from './helper/session';
 
 import Signin from './pages/SignIn';
 import Signup from './pages/SignUp';
@@ -29,19 +29,22 @@ import OrderDetail from "./pages/OrderDetail";
 import OrderTracking from "./pages/OrderTracking";
 
 const App = () => {
-  useEffect(() => {
-    let pathname = window.location.pathname
-    if(pathname !== '/signin' || pathname !== 'signup' || pathname !== '/forgot_password' || pathname !== '/reset_password' || pathname !== '/otp'){
-      document.getElementById('body').classList.remove('text-center');
-      document.getElementById('body').classList.add('align-items-start');
-      document.getElementById('body').classList.add('py-0');
-      document.getElementById('body').classList.add('flex-column');
-    }else{
+  const configClass = () => {
+    let pathname = safeString(window.location.pathname);
+    if(pathname === '/signin' || pathname === 'signup' || pathname === '/forgot_password' || pathname === '/reset_password' || pathname === '/otp'){
       document.getElementById('body').classList.remove('align-items-start');
       document.getElementById('body').classList.remove('py-0');
       document.getElementById('body').classList.remove('flex-column');
       document.getElementById('body').classList.add('text-center');
+    }else{
+      document.getElementById('body').classList.remove('text-center');
+      document.getElementById('body').classList.add('align-items-start');
+      document.getElementById('body').classList.add('py-0');
+      document.getElementById('body').classList.add('flex-column');
     }
+  }
+  useEffect(() => {
+    configClass();
   }, []);
 
   return (

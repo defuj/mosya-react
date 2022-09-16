@@ -21,11 +21,6 @@ const Signin = () => {
 
 	const navigate = useNavigate();
 
-	const setContentProgess = (status) => {
-		setProgress(status);
-		document.getElementById('buttonLogin').disabled = status
-	}
-
 	const handleSignin = async () =>{
 		if(email === '' && password === ''){
 			Swal.fire({
@@ -35,13 +30,13 @@ const Signin = () => {
 				confirmButtonText: 'Mengerti',
 			})
 		}else{
-			setContentProgess(true)
+			setProgress(true)
 			await axios.postForm(signin, {
 				email: email,
 				password: password
 			  })
 			  .then(function(response) {
-				setContentProgess(false)
+				setProgress(false)
 				console.log(response);
 				const result = response.data;
 				if(result.status){
@@ -74,7 +69,7 @@ const Signin = () => {
 				  })
 				}
 			  }).catch((error)=> {
-				setContentProgess(false)
+				setProgress(false)
 				Swal.fire({
 				  title: 'Perhatian',
 				  text: 'Terjadi kesalahan! Silahkan coba lagi.',
@@ -104,7 +99,7 @@ const Signin = () => {
 			<Link to="/forgot_password" className="mb-3 mt-2 font-weight-normal color-primary float-right bodytext2">
                 Lupa kata sandi?
             </Link>
-			<button onClick={handleSignin} className="btn btn-lg btn-block button-primary bodytext2" type="button" id="buttonLogin">
+			<button disabled={onProgress && 'disabled'} onClick={handleSignin} className="btn btn-lg btn-block button-primary bodytext2" type="button" id="buttonLogin">
 				{onProgress ? <Spinner/> : 'Masuk'}
 			</button>
 			<p className="mt-3 mb-1 bodytext2">

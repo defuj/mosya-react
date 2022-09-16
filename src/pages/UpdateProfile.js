@@ -17,18 +17,11 @@ const UpdateProfile = () => {
     const [name, setName] = useState(user.name);
     const [phone, setPhone] = useState(user.phone);
 
-
     useEffect(() => {
-        if(!checkAccount()){
-            window.location.replace('/signin');
-        }else{
+        if(checkAccount()){
             setUser(getAccount());
         }
     }, [])
-
-    const onBack = () => {
-        navigate('/home/profile');
-    }
 
     const handleImage = (evt) => {
         var tgt = evt.target || window.event.srcElement,
@@ -67,6 +60,7 @@ const UpdateProfile = () => {
                 let result = response.data;
                 if(result.status){
                     setAccount(result.data);
+                    console.log(result.data);
                     Swal.fire({
                         icon: 'success',
                         title: 'Berhasil',
@@ -105,7 +99,7 @@ const UpdateProfile = () => {
         <>
         <nav className="navbar fixed-top bg-white border-bottom shadow-sm px-0">
             <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 m-auto d-flex justify-content-start align-items-center flex-row py-0 px-xl-3 px-lg-3 px-md-3 px-sm-3 px-3">
-                <Link className="navbar-brand" title="back" onClick={onBack}>
+                <Link to="/home/profile" className="navbar-brand" title="back">
                     <i className="fi fi-sr-angle-left color-black400 headline6"></i>
                 </Link>
                 <p className="mb-0 bodytext1 semibold color-black500 px-2 py-2">Edit Profil</p>
@@ -136,7 +130,7 @@ const UpdateProfile = () => {
                     <input type="email" name="email" id="dataEmail" defaultValue={user.email} className="form-input bodytext2 color-black300" placeholder="Alamat Email" disabled required/>
                 </div>
 
-                <button onClick={onUpdate} type="button" id="buttonSave" className="button-action-save text-white background-green500 bodytext1 text-center mt-5">
+                <button disabled={onProgress && 'disabled'} onClick={onUpdate} type="button" id="buttonSave" className="button-action-save text-white background-green500 bodytext1 text-center mt-5">
                     {onProgress ? <Spinner/> : 'Simpan Perubahan'}
                 </button>
             </form>
