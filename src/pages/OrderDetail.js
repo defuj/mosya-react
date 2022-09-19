@@ -61,7 +61,7 @@ const OrderDetail = () => {
                 .then(response => {
                     setProgress(false);
                     let result = response.data;
-                    console.log(result);
+                    // console.log(result);
                     if(result.status){
                         Swal.fire({
                             title: 'Pesanan Diterima',

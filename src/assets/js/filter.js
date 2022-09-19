@@ -2,7 +2,7 @@ var merkSelector = document.querySelectorAll(".select-merk-item");
 merkSelector.forEach( (item) => {
     item.addEventListener("click", (e) => {
         merkSelector.forEach( (item) => {
-            console.log("remove active");
+            // console.log("remove active");
             item.classList.remove("active");
         });
         item.classList.add("active");
@@ -17,7 +17,7 @@ var colorSelector = document.querySelectorAll(".select-color-item");
 colorSelector.forEach( (item) => {
     item.addEventListener("click", (e) => {
         colorSelector.forEach( (item) => {
-            console.log("remove active");
+            // console.log("remove active");
             item.classList.remove("active");
         });
         item.classList.add("active");
@@ -36,7 +36,7 @@ var fuelSelector = document.querySelectorAll(".select-fuel-item");
 fuelSelector.forEach( (item) => {
     item.addEventListener("click", (e) => {
         fuelSelector.forEach( (item) => {
-            console.log("remove active");
+            // console.log("remove active");
             item.classList.remove("active");
         });
         item.classList.add("active");

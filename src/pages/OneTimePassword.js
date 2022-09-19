@@ -18,7 +18,7 @@ const OneTimePassword = () => {
         setOtp(code)
         let expired = new Date().getTime();
         setOtpExpired(expired)
-        console.log(`Kode OTP : ${code}`);
+        // console.log(`Kode OTP : ${code}`);
         
         setProgress(true)
         // count down
@@ -92,8 +92,8 @@ const OneTimePassword = () => {
                     } 
 
                     if(code.length === 6){
-                        console.log(`input code : ${code}`);
-                        console.log(`current code : ${otp}`);
+                        // console.log(`input code : ${code}`);
+                        // console.log(`current code : ${otp}`);
                         if(otp === code){
                             const now = new Date().getTime();
                             if(checkDeffTime(otpExpired,now) <= 5){

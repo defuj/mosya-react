@@ -62,7 +62,7 @@ const OrderBill = () => {
 
     const copyContent = (content) => {
         navigator.clipboard.writeText(content).then(function() {
-            console.log('Berhasil disalin ke clipboard');
+            // console.log('Berhasil disalin ke clipboard');
             alert('Berhasil disalin ke clipboard');
         }, function(err) {
             console.error('Tidak dapat menyalin', err);

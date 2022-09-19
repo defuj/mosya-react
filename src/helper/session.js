@@ -153,38 +153,42 @@ export const checkAccount = () => {
     if (storageAvailable('localStorage')) {
         if(localStorage.getItem('account') !== null){
             var user = getAccount();
-            if(user.lasttime !== null && user.lasttime !== undefined){
-                var now = new Date().getTime();
-                var lasttime = user.lasttime;
-                var diff = now - lasttime;
-                var msec = diff;
-                var hh = Math.floor(msec / 1000 / 60 / 60);
-                msec -= hh * 1000 * 60 * 60;
-                var mm = Math.floor(msec / 1000 / 60);
-
-                if(mm < 15){
-                    // console.log('last time : '+lasttime);
-                    // console.log('update time : ' + now);
-
-                    user.lasttime = now;
-                    localStorage.setItem('account', JSON.stringify(user));
-                    return true;
+            try {
+                if(user.lasttime !== null && user.lasttime !== undefined){
+                    var now = new Date().getTime();
+                    var lasttime = user.lasttime;
+                    var diff = now - lasttime;
+                    var msec = diff;
+                    var hh = Math.floor(msec / 1000 / 60 / 60);
+                    msec -= hh * 1000 * 60 * 60;
+                    var mm = Math.floor(msec / 1000 / 60);
+    
+                    if(mm < 15){
+                        // console.log('last time : '+lasttime);
+                        // console.log('update time : ' + now);
+    
+                        user.lasttime = now;
+                        localStorage.setItem('account', JSON.stringify(user));
+                        return true;
+                    }else{
+                        deleteAccount();
+                        return false;
+                    }
                 }else{
-                    deleteAccount();
-                    return false;
-                }
-            }else{
-                const time = new Date().getTime();
-                const newUser = {
-                    id: user.id,
-                    name: user.name,
-                    email: user.email,
-                    phone: user.phone,
-                    image: user.image,
-                    lasttime: time
-                };
-                localStorage.setItem('account', JSON.stringify(newUser));
-                return true;
+                    const time = new Date().getTime();
+                    const newUser = {
+                        id: user.id,
+                        name: user.name,
+                        email: user.email,
+                        phone: user.phone,
+                        image: user.image,
+                        lasttime: time
+                    };
+                    localStorage.setItem('account', JSON.stringify(newUser));
+                    return true;
+                }   
+            } catch (error) {
+                return false;
             }
         }
         return localStorage.getItem('account') !== null;

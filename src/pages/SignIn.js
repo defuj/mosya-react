@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import icon from '../assets/images/app_icon_title_h.png';
 import Swal from 'sweetalert2'
 import Spinner from '../components/Spinner';
 import axios, {signin} from '../helper/axios';
-import {setAccount, getLastPage, deleteLastPage} from '../helper/session';
+import {setAccount} from '../helper/session';
 
 const Signin = () => {
 	useEffect(() => {
@@ -13,14 +13,11 @@ const Signin = () => {
 		document.getElementById('body').classList.remove('py-0');
 		document.getElementById('body').classList.remove('flex-column');
 		document.getElementById('body').classList.add('text-center');
-		console.log(`last page : ${getLastPage()}`);
     }, []);
 
 	const [onProgress, setProgress] = useState(false);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-
-	const navigate = useNavigate();
 
 	const handleSignin = async () =>{
 		if(email === '' && password === ''){
@@ -38,20 +35,21 @@ const Signin = () => {
 			  })
 			  .then(function(response) {
 				setProgress(false)
-				console.log(response);
 				const result = response.data;
 				if(result.status){
 				  const account = result.data;
 				  if(account !== undefined){
 					setAccount(account);
-					let page = getLastPage();
-					if(page != null){
-						navigate(page);
-					  	deleteLastPage();
-					}else{
-						// window.location.href = '/home';
-						navigate('/home', { replace: true });
-					}
+					// let page = getLastPage();
+					// if(page != null){
+					// 	navigate(page);
+					//   	deleteLastPage();
+					// }else{
+					// 	// window.location.href = '/home';
+					// 	navigate('/home', { replace: true });
+					// }
+					// navigate('/home', { replace: true });
+					window.location.href = '/home';
 				  }else{
 					Swal.fire({
 					  title: 'Perhatian',

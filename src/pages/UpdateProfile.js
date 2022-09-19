@@ -60,7 +60,7 @@ const UpdateProfile = () => {
                 let result = response.data;
                 if(result.status){
                     setAccount(result.data);
-                    console.log(result.data);
+                    //console.log(result.data);
                     Swal.fire({
                         icon: 'success',
                         title: 'Berhasil',

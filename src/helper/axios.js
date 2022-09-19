@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: `https://apimosya.miebledek.com/`, // https://api.mosya.co.id/
+  baseURL: `https://api.mosya.co.id/`, // https://apimosya.miebledek.com/
   headers: {
     Authorization: `Basic bW9zeWFBcGk6OWY2NjE1ZjdmYzA1MDNiODEzODIwZTFiYTRiYWQ1MzA=`
   }

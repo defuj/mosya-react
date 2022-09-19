@@ -1,6 +1,7 @@
 {
   "name": "mosya-react",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "homepage": "https://mosya.co.id/",
   "private": true,
   "dependencies": {
     "@flaticon/flaticon-uicons": "^1.7.0",

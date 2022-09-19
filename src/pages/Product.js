@@ -30,7 +30,7 @@ const Product = () => {
             let result = response.data;
             if(result.status){
                 setCar(result.data);
-                console.log(result.data);
+                //console.log(result.data);
                 if(result.data.image.length > 0){
                     new Swiper(".carSlider", {
                         slidesPerView: 'auto',

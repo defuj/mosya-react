@@ -95,8 +95,8 @@ const OrderPaymentMethod = () => {
         .then(response => {
             setProgress(false);
             let result = response.data;
-            console.log('result upload payment type : ');
-            console.log(result);
+            //console.log('result upload payment type : ');
+            //console.log(result);
             if(result.status){
                 deleteLastBooking(`${car.id}`);
                 Swal.fire({
@@ -120,7 +120,7 @@ const OrderPaymentMethod = () => {
                 })
             }
         }).catch(error => {
-            console.log(error);
+            //console.log(error);
             setProgress(false);
             Swal.fire({
                 title: 'Perhatian',
@@ -143,8 +143,8 @@ const OrderPaymentMethod = () => {
         axios.postForm(orderupload, postForm)
         .then(response => {
             let result = response.data;
-            console.log('result upload image : ');
-            console.log(result);
+            //console.log('result upload image : ');
+            //console.log(result);
             if(result.status){
                 const lastBooking = getLastBooking(`${car.id}`)
                 setLastBooking(`${car.id}`,{
@@ -163,7 +163,7 @@ const OrderPaymentMethod = () => {
                 })
             }
         }).catch(error => {
-            console.log(error);
+            //console.log(error);
             setProgress(false);
             Swal.fire({
                 title: 'Perhatian',
@@ -188,8 +188,8 @@ const OrderPaymentMethod = () => {
             note : getColorSelected() !== null ? getColorSelected() : null,
         }).then(response => {
             let result = response.data;
-            console.log('result upload data:');
-            console.log(result);
+            //('result upload data:');
+            //console.log(result);
             if(result.status){
                 const code = result.code;
                 setBooking({
@@ -212,7 +212,7 @@ const OrderPaymentMethod = () => {
                 })
             }
         }).catch(error => {
-            console.log(error);
+            //console.log(error);
             setProgress(false);
             Swal.fire({
                 title: 'Perhatian',
@@ -229,8 +229,8 @@ const OrderPaymentMethod = () => {
             axios.get(cardetail + '?id=' + id)
             .then(response => {
                 let result = response.data;
-                console.log('result create order:');
-                console.log(result);
+                //console.log('result create order:');
+                //console.log(result);
                 if(result.status){
                     if(result.data.status === 'Ready'){
                         let lastBooking = getLastBooking(id);
@@ -275,7 +275,7 @@ const OrderPaymentMethod = () => {
                     })
                 }
             }).catch(error => {
-                console.log(error);
+                //console.log(error);
                 setProgress(false);
                 deleteCurrentCar();
                 Swal.fire({

@@ -25,8 +25,8 @@ const Brands = () => {
             setProgress(false);
             let result = response.data;
             if(result.status){
-                console.log(`keyword : ${keyword}`);
-                console.log(`keywords : ${keywords}`);
+                // console.log(`keyword : ${keyword}`);
+                // console.log(`keywords : ${keywords}`);
                 if(keywords === ''){
                     setBrands(result.data);
                 }else{
