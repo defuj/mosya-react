@@ -156,9 +156,13 @@ const Home = () => {
                 </button>
             </form>
 
-            { banner.length === 0 && brand.length === 0 && car.length === 0 && <Loading/>}
+            { banner.length === 0 && <Loading/>}
             { banner.length > 0 && <ImageSlider banner={banner}/>}
+            
+            { brand.length === 0 && <Loading/>}
             { brand.length > 0 && <BrandSlider brand={brand}/>}
+
+            { car.length === 0 && <Loading/>}
             { car.length > 0 && <CarSection car={car}/>}
             
             
