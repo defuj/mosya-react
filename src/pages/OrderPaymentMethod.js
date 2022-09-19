@@ -329,7 +329,7 @@ const OrderPaymentMethod = () => {
                     <div className="flex-fill ml-3">
                         <p className="caption color-green500 semibold mb-0" id="dataMerk">{car.brand}</p>
                         <p className="headline6 semibold color-black800 mb-0" id="dataModel">{car.model}</p>
-                        <p className="bodytext1 color-black300 mb-0" id="dataColorYear">{car.year}</p>
+                        <p className="bodytext1 color-black300 mb-0" id="dataColorYear">{getColorSelected()} | {car.year}</p>
                     </div>
                 </div>
                 <p className="bodytext1 color-black500 semibold p-0 mb-2">

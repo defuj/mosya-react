@@ -122,7 +122,7 @@ const UpdateProfile = () => {
 
                 <div className="input-group-custom bg-white mt-3">
                     <i className="fi fi-rr-hastag color-black400"></i>
-                    <input type="number" name="phone" id="dataPhone" defaultValue={user.phone} onChange={e => setPhone(e.target.value)} maxLength="15" className="form-input bodytext2" placeholder="Nomor Telpon" required/>
+                    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" id="dataPhone" defaultValue={user.phone} onChange={e => setPhone(e.target.value)} maxLength="15" className="form-input bodytext2" placeholder="Nomor Telpon" required/>
                 </div>
 
                 <div className="input-group-custom bg-light mt-3">

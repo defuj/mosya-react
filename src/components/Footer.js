@@ -12,7 +12,7 @@ const Footer = (props) => {
     return (
         <footer style={(pathname === '/home' || pathname === '/home/catalog' || pathname === '/home/history' || pathname === '/home/profile' || withNavigation) ? {} : {maxHeight: '300px', minHeight: '300px'}} className={(pathname === '/home' || pathname === '/home/catalog' || pathname === '/home/history' || pathname === '/home/profile') ? 'container-footer w-100 mb-4 bg-white p-3 flex-row justify-content-center col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 m-auto' : 'container-footer w-100 bg-white p-3 flex-row justify-content-center col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ml-auto mr-auto mb-0'}>
             <p className="headline6 color-black700 semibold text-center">Download Aplikasi Mosya!</p>
-            <p className="bodytext1 color-black400 text-center">Lebih mudah mencari mobil impian kamu hanya tinggal scroll dak klik klik aja.</p>
+            <p className="bodytext1 color-black400 text-center">Lebih mudah mencari mobil impian kamu hanya tinggal scroll dan klik klik aja.</p>
             <div className="container-footer-button d-flex justify-content-center">
                 <Link className="button-footer px-2" to="">
                     <img src={require('../assets/images/btn-google-play.png')} alt=""/>
