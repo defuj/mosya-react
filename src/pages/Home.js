@@ -165,7 +165,6 @@ const Home = () => {
             { car.length === 0 && <Loading/>}
             { car.length > 0 && <CarSection car={car}/>}
             
-            
         </main>
     )
 }

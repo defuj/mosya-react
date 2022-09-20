@@ -3,7 +3,7 @@ import axios, {cardetail} from '../helper/axios';
 import Loading from '../components/Loading';
 import EmptyState from '../components/EmptyState';
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { changeColorSelected, safeString } from "../helper/session";
+import { changeColorSelected, safeString, setCurrentCar } from "../helper/session";
 import Footer from "../components/Footer";
 import Swiper from 'swiper/swiper-bundle';
 import "swiper/swiper-bundle.css";
@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 const Product = () => {
     let { id, title } = useParams();
     const [car, setCar] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [onOrder, setOnOrder] = useState(false);
     const [colorSelected, setColorSelected] = useState(null);
 
@@ -25,6 +25,9 @@ const Product = () => {
     }
     
     const getCar = () => {
+        if(car === null){
+            setLoading(true);
+        }
         axios.get(cardetail + '?id=' + id)
         .then(response => {
             let result = response.data;
@@ -61,38 +64,40 @@ const Product = () => {
 
     const createRequest = () => {
         if(colorSelected !== null){
-            setOnOrder(true);
-            axios.get(cardetail + '?id=' + id)
-            .then(response => {
-                let result = response.data;
-                setOnOrder(false);
-                if(result.status){
-                    if(result.data.status === 'Ready'){
-                        navigate(`/order/${id}/identity`);
-                    }else{
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Mobil ini sudah tidak tersedia!',
-                        })
-                    }
-                }else{
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Tidak Ditemukan',
-                        text: 'Data mobil tidak ditemukan',
-                        confirmButtonText: 'Mengerti',
-                    })
-                }
-            }).catch(error => {
-                setOnOrder(false);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Terjadi kesalahan saat mengambil data mobil, silahkan coba lagi',
-                    confirmButtonText: 'Mengerti',
-                })
-            });
+            setOnOrder(false);
+            // axios.get(cardetail + '?id=' + id)
+            // .then(response => {
+            //     let result = response.data;
+            //     setOnOrder(false);
+            //     if(result.status){
+            //         if(result.data.status === 'Ready'){
+            //             navigate(`/order/${id}/identity`);
+            //         }else{
+            //             Swal.fire({
+            //                 icon: 'error',
+            //                 title: 'Oops...',
+            //                 text: 'Mobil ini sudah tidak tersedia!',
+            //             })
+            //         }
+            //     }else{
+            //         Swal.fire({
+            //             icon: 'error',
+            //             title: 'Tidak Ditemukan',
+            //             text: 'Data mobil tidak ditemukan',
+            //             confirmButtonText: 'Mengerti',
+            //         })
+            //     }
+            // }).catch(error => {
+            //     setOnOrder(false);
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: 'Oops...',
+            //         text: 'Terjadi kesalahan saat mengambil data mobil, silahkan coba lagi',
+            //         confirmButtonText: 'Mengerti',
+            //     })
+            // });
+            setCurrentCar(car);
+            navigate(`/order/${id}/identity`);
         }else{
             Swal.fire({
                 icon: 'error',
@@ -106,7 +111,6 @@ const Product = () => {
 
     useEffect(() => {
         document.title = "Mosya - " + safeString(title === undefined ? '' : title.replaceAll('_',' '));
-        setLoading(true);
         getCar();
     }, []);
     

@@ -5,73 +5,73 @@ import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import Spinner from "../components/Spinner";
 import axios, { cardetail, ordercreate, orderpayment, orderupload } from "../helper/axios";
-import { deleteCurrentCar, deleteLastBooking, getAccount, getColorSelected, getDataBooking, getLastBooking, setBooking, setLastBooking } from "../helper/session";
+import { deleteCurrentCar, deleteLastBooking, getAccount, getColorSelected, getCurrentCar, getDataBooking, getLastBooking, setBooking, setLastBooking } from "../helper/session";
 const OrderPaymentMethod = () => {
     const { id } = useParams();
-    const [car, setCar] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [car, setCar] = useState(getCurrentCar());
+    const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(false);
     const [paymentSelected, setPaymentSelected] = useState(null);
 
     const navigate = useNavigate();
 
-    const getCar = () => {
-        setLoading(true);
-        if(getDataBooking() !== null){
-            axios.get(cardetail + '?id=' + id)
-            .then(response => {
-                let result = response.data;
-                setLoading(false);
-                if(result.status){
-                    setCar(result.data);
-                }else{
-                    deleteCurrentCar();
-                    Swal.fire({
-                        title: 'Perhatian',
-                        text: 'Mobil yang anda pilih tidak tersedia',
-                        icon: 'error',
-                        confirmButtonText: 'Kembali',
-                        allowOutsideClick: false,
-                    }).then((result) => {
-                        if (result.value) {
-                            deleteCurrentCar();
-                            navigate(-1);
-                        }
-                    })
-                }
-            }).catch(error => {
-                setCar(null);
-                setLoading(false);
+    // const getCar = () => {
+    //     setLoading(true);
+    //     if(getDataBooking() !== null){
+    //         axios.get(cardetail + '?id=' + id)
+    //         .then(response => {
+    //             let result = response.data;
+    //             setLoading(false);
+    //             if(result.status){
+    //                 setCar(result.data);
+    //             }else{
+    //                 deleteCurrentCar();
+    //                 Swal.fire({
+    //                     title: 'Perhatian',
+    //                     text: 'Mobil yang anda pilih tidak tersedia',
+    //                     icon: 'error',
+    //                     confirmButtonText: 'Kembali',
+    //                     allowOutsideClick: false,
+    //                 }).then((result) => {
+    //                     if (result.value) {
+    //                         deleteCurrentCar();
+    //                         navigate(-1);
+    //                     }
+    //                 })
+    //             }
+    //         }).catch(error => {
+    //             setCar(null);
+    //             setLoading(false);
 
-                deleteCurrentCar();
-                Swal.fire({
-                    title: 'Perhatian',
-                    text: 'Terjadi kesalahan, silahkan kembali lagi nanti',
-                    icon: 'error',
-                    confirmButtonText: 'Kembali',
-                    allowOutsideClick: false,
-                }).then((result) => {
-                    if (result.value) {
-                        deleteCurrentCar();
-                        navigate(-1);
-                    }
-                })
-            });
-        }else{
-            Swal.fire({
-                title: 'Perhatian',
-                text: 'Terjadi kesalahan, silahkan kembali lagi nanti',
-                icon: 'error',
-                confirmButtonText: 'Kembali',
-                allowOutsideClick: false,
-            }).then((result) => {
-                if (result.value) {
-                    deleteCurrentCar();
-                    navigate(-1);
-                }
-            })
-        }
-    }
+    //             deleteCurrentCar();
+    //             Swal.fire({
+    //                 title: 'Perhatian',
+    //                 text: 'Terjadi kesalahan, silahkan kembali lagi nanti',
+    //                 icon: 'error',
+    //                 confirmButtonText: 'Kembali',
+    //                 allowOutsideClick: false,
+    //             }).then((result) => {
+    //                 if (result.value) {
+    //                     deleteCurrentCar();
+    //                     navigate(-1);
+    //                 }
+    //             })
+    //         });
+    //     }else{
+    //         Swal.fire({
+    //             title: 'Perhatian',
+    //             text: 'Terjadi kesalahan, silahkan kembali lagi nanti',
+    //             icon: 'error',
+    //             confirmButtonText: 'Kembali',
+    //             allowOutsideClick: false,
+    //         }).then((result) => {
+    //             if (result.value) {
+    //                 deleteCurrentCar();
+    //                 navigate(-1);
+    //             }
+    //         })
+    //     }
+    // }
 
     const dataURLtoFile = (dataurl, filename) => {
         var arr = dataurl.split(','),
@@ -303,7 +303,9 @@ const OrderPaymentMethod = () => {
 
     useEffect(() => {
         document.title = 'Pilih Metode Pembayaran';
-        getCar();
+        setCar(getCurrentCar());
+        setLoading(false);
+        // getCar();
     }, []);
 
     return (

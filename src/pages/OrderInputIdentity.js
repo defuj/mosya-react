@@ -3,12 +3,12 @@ import { useParams, useNavigate, Link} from "react-router-dom";
 import Swal from "sweetalert2";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
-import axios, { cardetail } from "../helper/axios";
-import { deleteCurrentCar, setDataBooking } from "../helper/session";
+// import axios, { cardetail } from "../helper/axios";
+import { getCurrentCar, getDataBooking, setDataBooking } from "../helper/session";
 
 const OrderInputIdentity = () => {
     const { id } = useParams();
-    const [car, setCar] = useState(null);
+    const [car, setCar] = useState(getCurrentCar());
     const [name,setName] = useState('');
     const [name2,setName2] = useState('');
     const [phone,setPhone] = useState('');
@@ -17,48 +17,48 @@ const OrderInputIdentity = () => {
     
     const navigate = useNavigate();
 
-    const getCar = () => {
-        setLoading(true);
-        axios.get(cardetail + '?id=' + id)
-        .then(response => {
-            let result = response.data;
-            setLoading(false);
-            if(result.status){
-                setCar(result.data);
-            }else{
-                deleteCurrentCar();
-                Swal.fire({
-                    title: 'Perhatian',
-                    text: 'Mobil yang anda pilih tidak tersedia',
-                    icon: 'error',
-                    confirmButtonText: 'Kembali',
-                    allowOutsideClick: false,
-                }).then((result) => {
-                    if (result.value) {
-                        deleteCurrentCar();
-                        navigate(-1);
-                    }
-                })
-            }
-        }).catch(error => {
-            setCar(null);
-            setLoading(false);
+    // const getCar = () => {
+    //     setLoading(true);
+    //     axios.get(cardetail + '?id=' + id)
+    //     .then(response => {
+    //         let result = response.data;
+    //         setLoading(false);
+    //         if(result.status){
+    //             setCar(result.data);
+    //         }else{
+    //             deleteCurrentCar();
+    //             Swal.fire({
+    //                 title: 'Perhatian',
+    //                 text: 'Mobil yang anda pilih tidak tersedia',
+    //                 icon: 'error',
+    //                 confirmButtonText: 'Kembali',
+    //                 allowOutsideClick: false,
+    //             }).then((result) => {
+    //                 if (result.value) {
+    //                     deleteCurrentCar();
+    //                     navigate(-1);
+    //                 }
+    //             })
+    //         }
+    //     }).catch(error => {
+    //         setCar(null);
+    //         setLoading(false);
 
-            deleteCurrentCar();
-            Swal.fire({
-                title: 'Perhatian',
-                text: 'Terjadi kesalahan, silahkan kembali lagi nanti',
-                icon: 'error',
-                confirmButtonText: 'Kembali',
-                allowOutsideClick: false,
-            }).then((result) => {
-                if (result.value) {
-                    deleteCurrentCar();
-                    navigate(-1);
-                }
-            })
-        });
-    }
+    //         deleteCurrentCar();
+    //         Swal.fire({
+    //             title: 'Perhatian',
+    //             text: 'Terjadi kesalahan, silahkan kembali lagi nanti',
+    //             icon: 'error',
+    //             confirmButtonText: 'Kembali',
+    //             allowOutsideClick: false,
+    //         }).then((result) => {
+    //             if (result.value) {
+    //                 deleteCurrentCar();
+    //                 navigate(-1);
+    //             }
+    //         })
+    //     });
+    // }
 
     const toBase64 = (file) => new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -132,7 +132,7 @@ const OrderInputIdentity = () => {
                             })
                         }else{
                             prepareDataBooking();
-                            navigate(`/order/${id}/payments`, { replace: true });
+                            navigate(`/order/${id}/payments`);
                         }
                     }
                 }
@@ -142,7 +142,15 @@ const OrderInputIdentity = () => {
 
     useEffect(() => {
         document.title = 'Identitas Pembeli';
-        getCar();
+        let last = getDataBooking();
+        setLoading(false);
+        if(last){
+            setName(last.name);
+            setName2(last.name2);
+            setAddress(last.address);
+            setPhone(last.phone);
+        }
+        setCar(getCurrentCar());
     }, []);
 
     return (
@@ -168,17 +176,17 @@ const OrderInputIdentity = () => {
                 <label className="bodytext1 color-black500 p-0 mb-1">
                     Nama Lengkap <span className="text-danger">*</span>
                 </label>
-                <input onKeyUp={e => setName(e.target.value)} type="text" id="inputName" name="name" maxLength="100" className="form-input form-data-booking bodytext2 mb-3" placeholder="Masukan nama lengkap" required/>
+                <input onKeyUp={e => setName(e.target.value)} defaultValue={name} type="text" id="inputName" name="name" maxLength="100" className="form-input form-data-booking bodytext2 mb-3" placeholder="Masukan nama lengkap" required/>
 
                 <label className="bodytext1 color-black500 p-0 mb-1">
                     Alamat Lengkap <span className="text-danger">*</span>
                 </label>
-                <input onKeyUp={e => setAddress(e.target.value)} type="text" id="inputAddress" name="address" maxLength="250" className="form-input form-data-booking bodytext2 mb-3" placeholder="Masukan alamat lengkap" required/>
+                <input onKeyUp={e => setAddress(e.target.value)} defaultValue={address} type="text" id="inputAddress" name="address" maxLength="250" className="form-input form-data-booking bodytext2 mb-3" placeholder="Masukan alamat lengkap" required/>
 
                 <label className="bodytext1 color-black500 p-0 mb-1">
                     Nomor HP <span className="text-danger">*</span>
                 </label>
-                <input onKeyUp={e => setPhone(e.target.value)} type="number" id="inputPhone" name="phone" maxLength="15" className="form-input form-data-booking bodytext2 mb-3" placeholder="Masukan nomor hp" required/>
+                <input onKeyUp={e => setPhone(e.target.value)} defaultValue={phone} type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="inputPhone" name="phone" maxLength="15" className="form-input form-data-booking bodytext2 mb-3" placeholder="Masukan nomor hp" required/>
 
                 <label className="bodytext1 color-black500 p-0 mb-1">
                     Upload KTP <span className="text-danger">*</span>
@@ -195,7 +203,7 @@ const OrderInputIdentity = () => {
                 <label className="bodytext1 color-black500 p-0 mb-1">
                     Nama Lengkap Pasangan (Jika Ada)
                 </label>
-                <input onKeyUp={e => setName2(e.target.value)} type="text" name="name2" id="inputName2" maxLength="100" className="form-input form-data-booking bodytext2 mb-3" placeholder="Masukan nama lengkap pasangan" encType="multipart/form-data"/>
+                <input onKeyUp={e => setName2(e.target.value)} defaultValue={name2} type="text" name="name2" id="inputName2" maxLength="100" className="form-input form-data-booking bodytext2 mb-3" placeholder="Masukan nama lengkap pasangan" encType="multipart/form-data"/>
 
                 <label className="bodytext1 color-black500 p-0 mb-1">
                     Upload KTP Pasangan (Jika Ada)

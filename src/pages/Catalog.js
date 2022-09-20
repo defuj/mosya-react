@@ -8,11 +8,14 @@ import { safeString } from "../helper/session";
 
 const Catalog = () => {
     const [catalog, setCatalog] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [keyword, setKeyword] = useState("");
     let navigate = useNavigate();
 
     const getCatalog = () => {
+        if(catalog.length === 0){
+            setLoading(true);
+        }
         axios.get(cataloglist)
         .then(response => {
             let result = response.data;
