@@ -1,8 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {
-    Link,
-    useNavigate
-  } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import '../assets/styles/home.css';
 import axios, {bannerlist, brandlist, carlist} from '../helper/axios';
@@ -15,6 +12,7 @@ const Home = () => {
     const [brand, setBrand] = useState([]);
     const [car, setCar] = useState([]);
     const [keyword, setKeyword] = useState("");
+
     const navigate = useNavigate();
 
     const onSearch = () => {
@@ -42,12 +40,12 @@ const Home = () => {
     const getBrand = () => {
         axios.get(brandlist)
         .then(response => {
-          let result = response.data;
-          if(result.status){
-            setBrand(result.data);
-          }else{
-            setBrand([]);
-          }
+            let result = response.data;
+            if(result.status){
+                setBrand(result.data);
+            }else{
+                setBrand([]);
+            }
         }).catch(error => {
             setBrand([]);
         });
@@ -77,7 +75,7 @@ const Home = () => {
                     <p className="bodytext1 color-black500 font-weight-bold">Merek Mobil</p>
                     <Link to="/brands" className="text-decoration-none">
                         <p className="caption color-green500 semibold">Lainnya</p>
-                    </Link>
+                    </Link> 
                 </div>
             </div>
             <div className="container-brand-text">
@@ -139,6 +137,7 @@ const Home = () => {
                 <p className="headline6 color-black500 semibold p-0 m-0">
                     Temukan mobil impian!
                 </p>
+                
                 </div>
                 <Link className="content-image-profile flex-shrink" to="/home/profile">
                     <div className="frame-image">
@@ -160,7 +159,7 @@ const Home = () => {
             { banner.length > 0 && <ImageSlider banner={banner}/>}
             
             { brand.length === 0 && <Loading/>}
-            { brand.length > 0 && <BrandSlider brand={brand}/>}
+            { <BrandSlider brand={brand}/>}
 
             { car.length === 0 && <Loading/>}
             { car.length > 0 && <CarSection car={car}/>}

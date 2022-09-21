@@ -79,7 +79,8 @@ input.middle:focus {
 	padding: 0px 16px;
 }
 
-.mySlider {
+.mySlider,
+.productSlider {
 	width: 100% !important;
 	height: 150px !important;
 }

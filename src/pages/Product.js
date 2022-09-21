@@ -5,10 +5,9 @@ import EmptyState from '../components/EmptyState';
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { changeColorSelected, safeString, setCurrentCar } from "../helper/session";
 import Footer from "../components/Footer";
-import Swiper from 'swiper/swiper-bundle';
-import "swiper/swiper-bundle.css";
 import Spinner from "../components/Spinner";
 import Swal from "sweetalert2";
+import ImageSliderNav from "../components/ImageSliderNav";
 
 const Product = () => {
     let { id, title } = useParams();
@@ -33,23 +32,6 @@ const Product = () => {
             let result = response.data;
             if(result.status){
                 setCar(result.data);
-                //console.log(result.data);
-                if(result.data.image.length > 0){
-                    new Swiper(".carSlider", {
-                        slidesPerView: 'auto',
-                        centeredSlides: false,
-                        direction: 'horizontal',
-                        spaceBetween: 16,
-                        loop: true,
-                        autoplay: {
-                            delay: 5000,
-                            disableOnInteraction: false,
-                        },
-                        pagination: {
-                            el: '.swiper-pagination',
-                        },
-                    })
-                }
 
                 if(result.data.color.length > 0){
                     setColor(result.data.color[0]);
@@ -126,24 +108,12 @@ const Product = () => {
             </div>
         </nav>
 
-        <main role="main" className="container-car container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 mt-5 pt-4">
+        <main role="main" className="container-car container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 mt-5 pt-4" style={{minHeight: '1vh'}}>
             {loading && <Loading />}
 
             {!loading && car === null && <EmptyState/>}
             
-            {car !== null && car.image.length > 0 &&
-            <div className="container-slider">
-                <div className="swiper carSlider">
-                    <div className="swiper-wrapper">
-                        {car.image.map((item, index) => 
-                        <div className="swiper-slide" key={index}>
-                            <img src={item} alt=""/>
-                        </div>)}
-                    </div>
-                </div>
-                <div className="swiper-pagination" id="swiper-pagination" style={{bottom: 'auto'}}></div>
-            </div>
-            }
+            {car !== null && car.image.length > 0 && <ImageSliderNav banner={car.image}/>}
 
             {car !== null && 
             <div className="container-data mt-5 mb-3">
