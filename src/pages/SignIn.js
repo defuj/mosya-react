@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import icon from '../assets/images/app_icon_title_h.png';
 import Swal from 'sweetalert2'
 import Spinner from '../components/Spinner';
@@ -7,12 +7,37 @@ import axios, {signin} from '../helper/axios';
 import {setAccount} from '../helper/session';
 
 const Signin = () => {
-	useEffect(() => {
-        document.title = "Masuk";
+	const navigate = useNavigate();
+
+	const prepareMain = () => {
+		document.getElementById('body').classList.remove('text-center');
+		document.getElementById('body').classList.add('align-items-start');
+		document.getElementById('body').classList.add('py-0');
+		document.getElementById('body').classList.add('flex-column');
+
+		if(navigate.length > 0){
+			navigate(-1, { replace: true });
+			// window.history.back();
+		}else{
+			// navigate('/home');
+			// window.location.href = '/home';
+		}
+		window.location.href = '/home';
+	}
+
+	const prepareSignin = () => {
 		document.getElementById('body').classList.remove('align-items-start');
 		document.getElementById('body').classList.remove('py-0');
 		document.getElementById('body').classList.remove('flex-column');
 		document.getElementById('body').classList.add('text-center');
+	}
+
+	useEffect(() => {
+        document.title = "Masuk";
+		prepareSignin();
+
+		console.log('History Page');
+		console.log(document.referrer);
     }, []);
 
 	const [onProgress, setProgress] = useState(false);
@@ -49,7 +74,13 @@ const Signin = () => {
 					// 	navigate('/home', { replace: true });
 					// }
 					// navigate('/home', { replace: true });
-					window.location.href = '/home';
+					// if(navigate.length > 0){
+					// 	// navigate(-1, { replace: true });
+					// 	window.history.back();
+					// }else{
+					// 	window.location.href = '/home';
+					// }
+					prepareMain();
 				  }else{
 					Swal.fire({
 					  title: 'Perhatian',
