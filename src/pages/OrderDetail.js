@@ -7,7 +7,7 @@ import Spinner from "../components/Spinner";
 import axios, { orderconfirm, orderdetail } from "../helper/axios";
 import { getAccount } from "../helper/session";
 
-const OrderDetail = () => {
+const OrderDetail = React.memo(() => {
     const {code} = useParams();
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -258,6 +258,6 @@ const OrderDetail = () => {
         }
         </>
     );
-}
+});
 
 export default OrderDetail;

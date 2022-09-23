@@ -6,7 +6,7 @@ import Loading from "../components/Loading";
 import Spinner from "../components/Spinner";
 import axios, { cardetail, ordercreate, orderpayment, orderupload } from "../helper/axios";
 import { deleteCurrentCar, deleteLastBooking, getAccount, getColorSelected, getCurrentCar, getDataBooking, getLastBooking, setBooking, setLastBooking } from "../helper/session";
-const OrderPaymentMethod = () => {
+const OrderPaymentMethod = React.memo(() => {
     const { id } = useParams();
     const [car, setCar] = useState(getCurrentCar());
     const [loading, setLoading] = useState(false);
@@ -372,6 +372,6 @@ const OrderPaymentMethod = () => {
         }
         </>
     );
-}
+});
 
 export default OrderPaymentMethod;

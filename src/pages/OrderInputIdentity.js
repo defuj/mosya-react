@@ -6,7 +6,7 @@ import Loading from "../components/Loading";
 // import axios, { cardetail } from "../helper/axios";
 import { getCurrentCar, getDataBooking, setDataBooking } from "../helper/session";
 
-const OrderInputIdentity = () => {
+const OrderInputIdentity = React.memo(() => {
     const { id } = useParams();
     const [car, setCar] = useState(getCurrentCar());
     const [name,setName] = useState('');
@@ -226,6 +226,6 @@ const OrderInputIdentity = () => {
         
         </>
     );
-}
+});
 
 export default OrderInputIdentity;

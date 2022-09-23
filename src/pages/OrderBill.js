@@ -6,7 +6,7 @@ import Loading from "../components/Loading";
 import Spinner from "../components/Spinner";
 import axios, { orderpaymentinfo, orderuploadpayment } from "../helper/axios";
 
-const OrderBill = () => {
+const OrderBill = React.memo(() => {
     const { code } = useParams();
     const [loading , setLoading] = useState(true);
     const [data, setData] = useState(null);
@@ -251,6 +251,6 @@ const OrderBill = () => {
         <Footer/>
         </>
     );
-}
+});
 
 export default OrderBill;
