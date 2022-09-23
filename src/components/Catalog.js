@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Catalogs = (props) => {
+const Catalogs = React.memo((props) => {
     const catalogs = props.catalog;
     return (catalogs.map((data, index) => 
         <div className="d-flex flex-row w-100 justify-content-start flex-wrap" key={index}>
@@ -19,6 +19,6 @@ const Catalogs = (props) => {
             )}
         </div>
     ));
-}
+})
 
 export default Catalogs;

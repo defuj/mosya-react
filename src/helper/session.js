@@ -57,7 +57,7 @@ export const getAccount = () => {
 
 export const getDataBooking = () => {
     if (storageAvailable('localStorage')) {
-        return localStorage.getItem('data_booking') != null ? JSON.parse(localStorage.getItem('data_booking')) : null;
+        return localStorage.getItem('data_booking') !== null ? JSON.parse(localStorage.getItem('data_booking')) : null;
     }
     return null;
 }
@@ -76,7 +76,7 @@ export const deleteDataBooking = () => {
 
 export const getBooking = () => {
     if (storageAvailable('localStorage')) {
-        return localStorage.getItem('booking') != null ? JSON.parse(localStorage.getItem('booking')) : null;
+        return localStorage.getItem('booking') !== null ? JSON.parse(localStorage.getItem('booking')) : null;
     }
     return null;
 }
@@ -95,7 +95,7 @@ export const deleteBooking = () => {
 
 export const getCurrentCar = () => {
     if (storageAvailable('localStorage')) {
-        return localStorage.getItem('current_car') != null ? JSON.parse(localStorage.getItem('current_car')) : null;
+        return localStorage.getItem('current_car') !== null ? JSON.parse(localStorage.getItem('current_car')) : null;
     }
     return null;
 }
@@ -110,6 +110,88 @@ export const deleteCurrentCar = () => {
     if (storageAvailable('localStorage')) {
         localStorage.removeItem('current_car');
     }
+}
+
+export const getDetailCar = (id) => {
+    if (storageAvailable('localStorage')) {
+        return localStorage.getItem(`car_${id}`) !== null ? JSON.parse(localStorage.getItem(`car_${id}`)) : null;
+    }
+    return null;
+}
+
+export const setDetailCar = (id, data = {}) => {
+    if (storageAvailable('localStorage')) {
+        if(data === null){
+            localStorage.setItem(`car_${id}`, data);
+        }else{
+            localStorage.setItem(`car_${id}`, JSON.stringify(data));
+        }
+    }
+}
+
+export const getListCar = () => {
+    if (storageAvailable('localStorage')) {
+        return localStorage.getItem('list_car') !== null ? JSON.parse(localStorage.getItem('list_car')) : [];
+    }
+    return [];
+}
+
+export const setListCar = (data) => {
+    if (storageAvailable('localStorage')) {
+        localStorage.setItem('list_car', JSON.stringify(data));
+    }
+}
+
+export const setCatalogCar = (data) => {
+    if (storageAvailable('localStorage')) {
+        localStorage.setItem('catalog_car', JSON.stringify(data));
+    }
+}
+
+export const getCatalogCar = () => {
+    if (storageAvailable('localStorage')) {
+        return localStorage.getItem('catalog_car') !== null ? JSON.parse(localStorage.getItem('catalog_car')) : [];
+    }
+    return [];
+}
+
+export const setBannerHome = (data) => {
+    if (storageAvailable('localStorage')) {
+        localStorage.setItem('banner_home', JSON.stringify(data));
+    }
+}
+
+export const getBannerHome = () => {
+    if (storageAvailable('localStorage')) {
+        return localStorage.getItem('banner_home') !== null ? JSON.parse(localStorage.getItem('banner_home')) : [];
+    }
+    return [];
+}
+
+export const setBrands = (data) => {
+    if (storageAvailable('localStorage')) {
+        localStorage.setItem('brand_home', JSON.stringify(data));
+    }
+}
+
+export const getBrands = () => {
+    if (storageAvailable('localStorage')) {
+        return localStorage.getItem('brand_home') !== null ? JSON.parse(localStorage.getItem('brand_home')) : [];
+    }
+    return [];
+}
+
+export const setHistories = (data) => {
+    if (storageAvailable('localStorage')) {
+        localStorage.setItem('histories', JSON.stringify(data));
+    }
+}
+
+export const getHistories = () => {
+    if (storageAvailable('localStorage')) {
+        return localStorage.getItem('histories') !== null ? JSON.parse(localStorage.getItem('histories')) : [];
+    }
+    return [];
 }
 
 export const checkDeffTime = (time1, time2) => {
@@ -198,7 +280,7 @@ export const checkAccount = () => {
 
 export const deleteAccount = () => {
     if (storageAvailable('localStorage')) {
-        localStorage.removeItem('account');
+        localStorage.clear();
     }
 }
 

@@ -4,25 +4,25 @@ import Catalogs from "../components/Catalog";
 import Loading from '../components/Loading';
 import EmptyState from '../components/EmptyState';
 import { useNavigate } from "react-router-dom";
-import { safeString } from "../helper/session";
+import { getCatalogCar, safeString, setCatalogCar } from "../helper/session";
 
-const Catalog = () => {
-    const [catalog, setCatalog] = useState([]);
-    const [loading, setLoading] = useState(false);
+const Catalog = React.memo(() => {
+    const [catalog, setCatalog] = useState(getCatalogCar());
+    const [loading, setLoading] = useState(true);
     const [keyword, setKeyword] = useState("");
     let navigate = useNavigate();
 
     const getCatalog = () => {
-        if(catalog.length === 0){
-            setLoading(true);
-        }
+        setLoading(true);
         axios.get(cataloglist)
         .then(response => {
             let result = response.data;
             if(result.status){
                 setCatalog(result.data);
+                setCatalogCar(result.data)
             }else{
                 setCatalog([]);
+                setCatalogCar([])
             }
             setLoading(false);
         }).catch(error => {
@@ -41,6 +41,8 @@ const Catalog = () => {
 
     useEffect(() => {
         document.title = "Katalog Mobil";
+        setLoading(true);
+        setCatalog(getCatalogCar())
         getCatalog();
     }, []);
     
@@ -62,7 +64,7 @@ const Catalog = () => {
         </nav>
 
         <main role="main" className="container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-4 pl-0 pr-0 mt-5">
-            {loading && <Loading />}
+            {loading && catalog.length === 0 && <Loading />}
             {!loading && catalog.length === 0 && <EmptyState />}
 
             <div className="container-products w-100 mb-2">
@@ -73,6 +75,6 @@ const Catalog = () => {
         </main>
         </>
     )
-}
+})
 
 export default Catalog;

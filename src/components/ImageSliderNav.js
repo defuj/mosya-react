@@ -4,7 +4,7 @@ import { Autoplay, Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import "swiper/swiper-bundle.css";
 
-const ImageSliderNav = (props) => {
+const ImageSliderNav = React.memo((props) => {
     const banners = props.banner;
     const updatePosition = () => {
         try {
@@ -34,6 +34,6 @@ const ImageSliderNav = (props) => {
             </Swiper>
         </div>
     )
-}
+})
 
 export default ImageSliderNav;

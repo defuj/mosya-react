@@ -3,12 +3,12 @@ import axios, {carlist} from '../helper/axios';
 import Loading from '../components/Loading';
 import EmptyState from '../components/EmptyState';
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { safeString } from "../helper/session";
+import { getListCar, safeString } from "../helper/session";
 import Footer from "../components/Footer";
 
 const Products = () => {
     let { keyword } = useParams();
-    const [cars, setCars] = useState([]);
+    const [cars, setCars] = useState(getListCar());
     const [keywords, setKeywords] = useState(keyword);
     const [loading, setLoading] = useState(true);
     
@@ -177,24 +177,24 @@ const Products = () => {
         </nav>
 
         <main role="main" className="container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 main-content">
-            {loading && <Loading />}
+            {loading && cars.length === 0 && <Loading />}
             {!loading && cars.length === 0 && <EmptyState title={keywords !== undefined && keywords !== '' && `Pencarian <span class="color-green500 semibold">"${keyword}"</span> Tidak Ditemukan`} desc={keywords !== undefined && keywords !== '' && `Silahkan gunakan kata kunci lain`}/>}
 
             <div className="container-products w-100 mb-2">
                 <div className="container-product d-flex justify-content-start d-flex w-100 flex-wrap px-2 py-1">
-                    {!loading && cars.length > 0 && keyword !== undefined && (
+                    {cars.length > 0 && keyword !== undefined && (
                         <p className="mb-0 bodytext1 color-black500 text-search-result semibold px-3 w-100">
                             Menemukan <span className="color-green500">{cars.length}</span> Mobil dengan kata kunci <span className="color-green500">{keyword}</span>
                         </p>
                     )}
 
-                    {!loading && cars.length > 0 && keyword === undefined && (
+                    {cars.length > 0 && keyword === undefined && (
                         <p className="mb-0 bodytext1 color-black500 text-search-result semibold px-3 w-100">
                             <span className="color-green500 semibold">{cars.length}</span> mobil ditemukan
                         </p>
                     )}
 
-                    {!loading && cars.length > 0 && cars.map((data, index) => (
+                    {cars.length > 0 && cars.map((data, index) => (
                         <Link className="product-items w-50 flex-column lazy" to={`/product/${data.id}/${data.model.replaceAll(' ','_')}`} key={index}>
                             <div className="lazy product-cover mb-2" style={{backgroundImage : `url('${data.image_cover}')`}}></div>
                             <p className="bodytext1 color-black800 semibold m-0 px-2">{data.model}</p>

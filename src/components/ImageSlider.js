@@ -4,7 +4,7 @@ import { Autoplay, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import "swiper/swiper-bundle.css";
 
-const ImageSlider = (props) => {
+const ImageSlider = React.memo((props) => {
     const banners = props.banner;
     
     const openUrl = (url) => {
@@ -27,6 +27,6 @@ const ImageSlider = (props) => {
             )}
         </Swiper>
     )
-}
+})
 
 export default ImageSlider;

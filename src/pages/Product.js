@@ -3,7 +3,7 @@ import axios, {cardetail} from '../helper/axios';
 import Loading from '../components/Loading';
 import EmptyState from '../components/EmptyState';
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { changeColorSelected, safeString, setCurrentCar } from "../helper/session";
+import { changeColorSelected, getDetailCar, safeString, setCurrentCar, setDetailCar } from "../helper/session";
 import Footer from "../components/Footer";
 import Spinner from "../components/Spinner";
 import Swal from "sweetalert2";
@@ -11,7 +11,7 @@ import ImageSliderNav from "../components/ImageSliderNav";
 
 const Product = () => {
     let { id, title } = useParams();
-    const [car, setCar] = useState(null);
+    const [car, setCar] = useState(getDetailCar(id));
     const [loading, setLoading] = useState(false);
     const [onOrder, setOnOrder] = useState(false);
     const [colorSelected, setColorSelected] = useState(null);
@@ -32,10 +32,13 @@ const Product = () => {
             let result = response.data;
             if(result.status){
                 setCar(result.data);
+                setDetailCar(id, result.data);
 
                 if(result.data.color.length > 0){
                     setColor(result.data.color[0]);
                 }
+            }else{
+                setDetailCar(id, null);
             }
             setLoading(false);
         }).catch(error => {
@@ -93,6 +96,7 @@ const Product = () => {
 
     useEffect(() => {
         document.title = "Mosya - " + safeString(title === undefined ? '' : title.replaceAll('_',' '));
+        setCar(getDetailCar(id));
         getCar();
     }, []);
     

@@ -1,6 +1,6 @@
 import React from "react";
 
-const EmptyState = (props) => {
+const EmptyState = React.memo((props) => {
     let {title, desc, wrapHeight, imageWidth} = props;
     let titleEmpty = title ? title : 'Tidak menemukan produk';
     let descEmpty = desc ? desc : 'Silahkan coba lagi nanti';
@@ -15,5 +15,5 @@ const EmptyState = (props) => {
           </div>
         </div>
     );
-}
+})
 export default EmptyState;

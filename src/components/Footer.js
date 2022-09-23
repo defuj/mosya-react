@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 
-const Footer = (props) => {
+const Footer = React.memo((props) => {
     const withNavigation = props.withNavigation === undefined ? false : props.withNavigation;
     const [pathname, setPathname] = useState(window.location.pathname);
     
@@ -41,6 +41,6 @@ const Footer = (props) => {
             </div>
         </footer>
     )
-}
+})
 
 export default Footer;

@@ -3,7 +3,7 @@ import {
     Link
   } from "react-router-dom";
 import '../assets/styles/home.css';
-import { checkAccount, deleteAccount, getAccount } from "../helper/session";
+import { checkAccount, deleteAccount, getAccount, getHistories } from "../helper/session";
 import Loading from "../components/Loading";
 import Swal from "sweetalert2";
 import axios, { historylist } from "../helper/axios";
@@ -11,7 +11,7 @@ import axios, { historylist } from "../helper/axios";
 const Profile = () => {
     const [account, setAccount] = useState(getAccount);
     const [loading, setLoading] = useState(true);
-    const [history, setHistory] = useState([]);
+    const [history, setHistory] = useState(getHistories());
 
     const signOut = () => {
         Swal.fire({

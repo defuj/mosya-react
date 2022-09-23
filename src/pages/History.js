@@ -3,12 +3,12 @@ import { Link} from "react-router-dom";
 import '../assets/styles/home.css';
 import Loading from '../components/Loading';
 import axios, {historylist} from '../helper/axios';
-import {checkAccount, getAccount} from '../helper/session';
+import {checkAccount, getAccount, getHistories, setHistories} from '../helper/session';
 import EmptyState from "../components/EmptyState";
 
 const History = () => {
     const [loading, setLoading] = useState(false);
-    const [history, setHistory] = useState([]);
+    const [history, setHistory] = useState(getHistories());
     const [account, setAccount] = useState(getAccount());
 
     const getHistory = async () => {
@@ -17,8 +17,10 @@ const History = () => {
             let result = response.data;
             if(result.status){
                 setHistory(result.data);
+                setHistories(result.data);
             }else{
                 setHistory([]);
+                setHistories([]);
             }
             setLoading(false);
         }).catch(error => {
@@ -27,7 +29,7 @@ const History = () => {
         });
     }
 
-    const HistoryContent = (props) => {
+    const HistoryContent = React.memo((props) => {
         let data = props.history;
         return (
         <div className="container-history w-100 d-flex flex-column w-100 py-1 px-3">
@@ -59,11 +61,12 @@ const History = () => {
             ).reverse()}
         </div>
         )
-    }
+    })
 
     useEffect(() => {
         document.title = "Riwayat Pesanan";
         if(checkAccount()){
+            setHistory(getHistories());
             getHistory();
             setLoading(true);
             setAccount(getAccount());
@@ -83,9 +86,9 @@ const History = () => {
         </nav>
 
         <main role="main" className="container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 mt-5 pt-4" style={{minHeight: '300px'}}>
-            {loading && <Loading />}
-            {history.length === 0 && !loading && <EmptyState title="Tidak Ada Riwayat" desc="Anda belum melakukan pemesanan mobil" />}
-            {history.length > 0 && !loading && <HistoryContent history={history}/>}
+            {loading && history.length === 0 && <Loading />}
+            {!loading && history.length === 0 && <EmptyState title="Tidak Ada Riwayat" desc="Anda belum melakukan pemesanan mobil" />}
+            {!loading && history.length > 0 && <HistoryContent history={history}/>}
         </main>
         </>
     )

@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 import '../assets/styles/home.css';
 import axios, {bannerlist, brandlist, carlist} from '../helper/axios';
-import {checkAccount, getAccount} from '../helper/session';
+import {checkAccount, getAccount, getBannerHome, getBrands, getListCar, setBannerHome, setBrands, setListCar} from '../helper/session';
 import ImageSlider from "../components/ImageSlider";
 import Loading from "../components/Loading";
 
-const Home = () => {
-    const [banner, setBanner] = useState([]);
-    const [brand, setBrand] = useState([]);
-    const [car, setCar] = useState([]);
+const Home = React.memo(() => {
+    const [banner, setBanner] = useState(getBannerHome());
+    const [brand, setBrand] = useState(getBrands());
+    const [car, setCar] = useState(getListCar());
     const [keyword, setKeyword] = useState("");
 
     const navigate = useNavigate();
@@ -29,8 +29,10 @@ const Home = () => {
             let result = response.data;
             if(result.status){
                 setBanner(result.data);
+                setBannerHome(result.data)
             }else{
                 setBanner([]);
+                setBannerHome([])
             }
         }).catch(error => {
             setBanner([]);
@@ -43,8 +45,10 @@ const Home = () => {
             let result = response.data;
             if(result.status){
                 setBrand(result.data);
+                setBrands(result.data);
             }else{
                 setBrand([]);
+                setBrands([]);
             }
         }).catch(error => {
             setBrand([]);
@@ -52,21 +56,23 @@ const Home = () => {
     }
 
     const getCar = () => {
-        axios.get(carlist)
+        axios.get(`${carlist}?limit=12`)
         .then(response => {
             let result = response.data;
             if(result.status){
                 var cars = result.data;
                 setCar(cars);
+                setListCar(cars);
             }else{
                 setCar([]);
+                setListCar([]);
             }
         }).catch(error => {
             setCar([]);
         });
     }
 
-    const BrandSlider = (props) => {
+    const BrandSlider = React.memo((props) => {
         const brands = props.brand;
         return (
             <>
@@ -91,7 +97,7 @@ const Home = () => {
             </div>
             </>
         )
-    }
+    })
 
     const CarSection = (props) => {
         const cars = props.car;
@@ -122,6 +128,9 @@ const Home = () => {
 
     useEffect(() => {
         document.title = 'Beranda';
+        setCar(getListCar());
+        setBanner(getBannerHome())
+        setBrand(getBrands())
         getBanner();
         getBrand();
         getCar();
@@ -159,13 +168,13 @@ const Home = () => {
             { banner.length > 0 && <ImageSlider banner={banner}/>}
             
             { brand.length === 0 && <Loading/>}
-            { <BrandSlider brand={brand}/>}
+            { brand.length > 0 && <BrandSlider brand={brand}/>}
 
             { car.length === 0 && <Loading/>}
             { car.length > 0 && <CarSection car={car}/>}
             
         </main>
     )
-}
+})
 
 export default Home;
