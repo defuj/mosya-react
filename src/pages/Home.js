@@ -99,6 +99,17 @@ const Home = React.memo(() => {
         )
     })
 
+    const CarContent = React.memo(({item}) => {
+        return (
+            <Link to={`/product/${item.id}/${item.model.replaceAll(' ','_')}`} className="product-items w-50 flex-column" key={item.id}>
+                <div className="product-cover mb-2" style={{backgroundImage: `url(${item.image_cover})`}}></div>
+                <p className="bodytext1 color-black800 semibold m-0 px-2">{item.model}</p>
+                <p className="bodytext2 color-black300 m-0 px-2">{item.year} | {item.color.length > 0 ? `${item.color.length} Warna` : 'Tidak Ada Warna'}</p>
+                <p className="caption color-green500 m-0 py-1 px-2">{item.price}</p>
+            </Link>
+        );
+    });
+
     const CarSection = (props) => {
         const cars = props.car;
         return (
@@ -112,14 +123,7 @@ const Home = React.memo(() => {
                 </div>
                 <div id="container-product" className="container-product d-flex justify-content-start d-flex w-100 flex-wrap px-2 py-2">
                     
-                    {cars.length >= 8 && cars.slice(0,8).map((item,index) => 
-                    <Link to={`/product/${item.id}/${item.model.replaceAll(' ','_')}`} className="product-items w-50 flex-column" key={item.id}>
-                        <div className="product-cover mb-2" style={{backgroundImage: `url(${item.image_cover})`}}></div>
-                        <p className="bodytext1 color-black800 semibold m-0 px-2">{item.model}</p>
-                        <p className="bodytext2 color-black300 m-0 px-2">{item.year} | {item.color.length > 0 ? `${item.color.length} Warna` : 'Tidak Ada Warna'}</p>
-                        <p className="caption color-green500 m-0 py-1 px-2">{item.price}</p>
-                    </Link>
-                    )}
+                    {cars.length >= 8 && cars.slice(0,8).map((item,index) => <CarContent item={item} key={item.id}/>)}
                 </div>
             </div>
             </>
