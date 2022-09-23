@@ -3,10 +3,10 @@ import { Link} from "react-router-dom";
 import '../assets/styles/home.css';
 import Loading from '../components/Loading';
 import axios, {historylist} from '../helper/axios';
-import {checkAccount, getAccount, getHistories, setHistories} from '../helper/session';
+import { getAccount, getHistories, setHistories} from '../helper/session';
 import EmptyState from "../components/EmptyState";
 
-const History = () => {
+const History = React.memo(() => {
     const [loading, setLoading] = useState(false);
     const [history, setHistory] = useState(getHistories());
     const [account, setAccount] = useState(getAccount());
@@ -33,7 +33,7 @@ const History = () => {
         let data = props.history;
         return (
         <div className="container-history w-100 d-flex flex-column w-100 py-1 px-3">
-            {data.map((data, i) =>
+            {data.map((data, i) => 
                 <Link to={`/order/${data.id}/detail`} className="d-flex flex-column history-item mb-3 text-decoration-none" key={data.id}>
                     <div className=" d-flex flex-row justify-content-center align-items-center">
                         <div className="d-flex flex-column flex-fill">
@@ -65,14 +65,10 @@ const History = () => {
 
     useEffect(() => {
         document.title = "Riwayat Pesanan";
-        if(checkAccount()){
-            setHistory(getHistories());
-            getHistory();
-            setLoading(true);
-            setAccount(getAccount());
-        }else{
-            window.location.replace('/signin');
-        }
+        setHistory(getHistories());
+        setAccount(getAccount());
+        getHistory();
+        setLoading(true);
     }, []);
 
     return (
@@ -92,6 +88,6 @@ const History = () => {
         </main>
         </>
     )
-}
+})
 
 export default History;
