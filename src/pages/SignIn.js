@@ -112,7 +112,7 @@ const Signin = () => {
 
     return (
         <form className="form-signin text-center" style={{maxWidth: '300px'}}>
-			<Link to="/home" className="text-decoration-none">
+			<Link to="/home" title="beranda-mosya" className="text-decoration-none">
 				<img className="mb-4 w-100" src={icon} alt="mosya-icon" title="mosya-icon"/>
 			</Link>
 
@@ -126,7 +126,7 @@ const Signin = () => {
 				<input onChange={e => setPassword(e.target.value)} type="password" name="password" id="inputPassword" className="form-input bodytext2" placeholder="Kata Sandi" required />
 			</div>
 
-			<Link to="/forgot_password" className="mb-3 mt-2 font-weight-normal color-primary float-right bodytext2">
+			<Link to="/forgot_password" title="lupa-kata-sandi" className="mb-3 mt-2 font-weight-normal color-primary float-right bodytext2">
                 Lupa kata sandi?
             </Link>
 			<button disabled={onProgress && 'disabled'} onClick={handleSignin} className="btn btn-lg btn-block button-primary bodytext2" type="button" id="buttonLogin">
@@ -134,7 +134,7 @@ const Signin = () => {
 			</button>
 			<p className="mt-3 mb-1 bodytext2">
 				Belum punya akun? 
-				<Link to="/signup" href="register" className="color-primary"> Daftar</Link>
+				<Link to="/signup" title="buat-akun" href="register" className="color-primary"> Daftar</Link>
 			</p>
 		</form>
     );

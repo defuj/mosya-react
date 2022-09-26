@@ -140,7 +140,7 @@ const OrderBill = React.memo(() => {
                     <p className="bodytext2 color-black500 p-0 flex-fill">
                         <b id="norek">1246476978028</b>
                     </p>
-                    <Link to="" className="text-decoration-none bodytext2 semibold color-green500 p-0" onClick={() => copyContent('1246476978028')}>
+                    <Link to="" title="salin-norek" className="text-decoration-none bodytext2 semibold color-green500 p-0" onClick={() => copyContent('1246476978028')}>
                         Salin
                     </Link>
                 </div>
@@ -159,7 +159,7 @@ const OrderBill = React.memo(() => {
                     <p className="bodytext2 color-black500 p-0 flex-fill" id="totalPayment">
                         {data.total_payment}
                     </p>
-                    <Link to="" className="text-decoration-none bodytext2 semibold color-green500 p-0" onClick={() => copyContent(data.total_payment)}>
+                    <Link to="" title="salin-total" className="text-decoration-none bodytext2 semibold color-green500 p-0" onClick={() => copyContent(data.total_payment)}>
                         Salin
                     </Link>
                 </div>

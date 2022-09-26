@@ -79,19 +79,19 @@ const Home = React.memo(() => {
             <>
             <div className="contaier-brand d-flex w-100 flex-row px-3 mt-4">
                 <div className="w-100 d-flex justify-content-between align-items-center">
-                    <p className="bodytext1 color-black500 font-weight-bold">Merek Mobil</p>
-                    <Link to="/brands" className="text-decoration-none">
+                    <h2 className="bodytext1 color-black500 font-weight-bold">Merek Mobil</h2>
+                    <Link to="/brands" className="text-decoration-none" title="daftar-brand-mobil">
                         <p className="caption color-green500 semibold">Lainnya</p>
                     </Link> 
                 </div>
             </div>
             <div className="container-brand-text">
-                <Link to="/products" className="bodytext2 text-decoration-none brand-slide active">
+                <Link to="/products" className="bodytext2 text-decoration-none brand-slide active" title="daftar-produk">
                     Semua
                 </Link>
                 
                 {brands.map((item,index) => 
-                    index <= 6 && <Link to={'/products/'+item.name} className="bodytext2 text-decoration-none flex-column brand-slide" key={item.id}>
+                    index <= 6 && <Link to={'/products/'+item.name} title={`cari-mobil-${item.name}`} className="bodytext2 text-decoration-none flex-column brand-slide" key={item.id}>
                         {item.name}
                     </Link>
                 )}
@@ -102,7 +102,7 @@ const Home = React.memo(() => {
 
     const CarContent = React.memo(({item}) => {
         return (
-            <Link to={`/product/${item.id}/${stringToUrl(item.model)}`} className="product-items w-50 flex-column" key={item.id}>
+            <Link to={`/product/${item.id}/${stringToUrl(item.model)}`} title={`detail-mobil-${stringToUrl(item.model)}`} className="product-items w-50 flex-column" key={item.id}>
                 <div className="product-cover mb-2" style={{backgroundImage: `url(${item.image_cover})`}}></div>
                 <p className="bodytext1 color-black800 semibold m-0 px-2">{item.model}</p>
                 <p className="bodytext2 color-black300 m-0 px-2">{item.year} | {item.color.length > 0 ? `${item.color.length} Warna` : 'Tidak Ada Warna'}</p>
@@ -117,8 +117,8 @@ const Home = React.memo(() => {
             <>
             <div className="container-products w-100">
                 <div className="w-100 d-flex justify-content-between align-items-center px-3 mt-4">
-                    <p className="bodytext1 color-black500 font-weight-bold m-0">Mobil Tersedia</p>
-                    <Link to="/products" className="text-decoration-none">
+                    <h2 className="bodytext1 color-black500 font-weight-bold m-0">Mobil Tersedia</h2>
+                    <Link to="/products" className="text-decoration-none" title="daftar-mobil">
                         <p className="caption color-green500 semibold m-0">Lainnya</p>
                     </Link>
                 </div>
@@ -175,12 +175,12 @@ const Home = React.memo(() => {
                 <p className="bodytext2 color-black500 p-0 m-0" id="dataName">
                     {checkAccount() ? `Assalamualaikum, ${getAccount().name}` : 'Assalamualaikum'}
                 </p>
-                <p className="headline6 color-black500 semibold p-0 m-0">
+                <h1 className="headline6 color-black500 semibold p-0 m-0">
                     Temukan mobil impian!
-                </p>
+                </h1>
                 
                 </div>
-                <Link className="content-image-profile flex-shrink" to="/home/profile">
+                <Link className="content-image-profile flex-shrink" to="/home/profile" title="profile">
                     <div className="frame-image">
                         <img src={checkAccount() && getAccount().image !== null && getAccount().image !== '' ? getAccount().image : 'https://defuj.github.io/mosya.bootstrap/assets/images/user-default.png'} alt="profile" id="dataImage" title="image-profile"/>
                     </div>

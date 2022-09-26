@@ -164,7 +164,7 @@ const Product = () => {
                 </p>
 
                 {car.catalog.link !== '' && 
-                <a href={car.catalog.link} target="_blank" rel="noopener noreferrer" className="text-decoration-none container-spec d-flex align-content-start flex-wrap px-2 mb-3 data-spec" id="data-spec">
+                <a href={car.catalog.link} title="download-katalog-mobil" target="_blank" rel="noopener noreferrer" className="text-decoration-none container-spec d-flex align-content-start flex-wrap px-2 mb-3 data-spec" id="data-spec">
                     <div className="spec-item d-flex flex-row item-align-center justify-content-start w-100">
                         <i className="headline4 color-black400 fi fi-rr-document" style={{height: '32px'}}></i>
                         <div className="flex-fill align-items-center pl-3">

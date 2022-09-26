@@ -16,9 +16,10 @@ const ImageSlider = React.memo((props) => {
             modules={[Scrollbar, Autoplay]}
             autoplay={{delay: 5000, disableOnInteraction: false}}
             spaceBetween={10}
-            slidesPerView={1.3}
-            centeredSlides={false}
+            slidesPerView={1.5}
+            centeredSlides={true}
             loop={true}
+            loopedSlides={5}
             lazy={true}>
             {banners.map((item, index) => 
             <SwiperSlide key={index} onClick={() => openUrl(item.link)}>

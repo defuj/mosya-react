@@ -120,7 +120,7 @@ const Signup = () => {
 				<input onChange={e => setPasswordConfirm(e.target.value)} type="password" name="passwordConfirm" className="form-input bodytext2" placeholder="Konfirmasi Kata Sandi" required/>
 			</div>
 
-			<p className="mt-3 mb-3 bodytext2">Dengan mendaftar, kamu menyetujui <Link to="#" className="color-primary">Syarat Ketentuan</Link> dan <Link to="#" className="color-primary">Kebijakan Privasi</Link> kami.</p>
+			<p className="mt-3 mb-3 bodytext2">Dengan mendaftar, kamu menyetujui <Link to="#" title="syarat-ketentuan" className="color-primary">Syarat Ketentuan</Link> dan <Link to="#" title="kebijakan-privasi" className="color-primary">Kebijakan Privasi</Link> kami.</p>
 			<button onClick={handleSignup} className="btn btn-lg btn-block button-primary bodytext2" type="button" id="buttonRegister">
 				{onProgress ? <Spinner/> : 'Buat Akun'}
 			</button>

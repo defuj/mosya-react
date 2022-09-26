@@ -62,7 +62,7 @@ const Profile = () => {
                   <div className="spec-item flex-column flex-fill justify-content-column m-0 mt-3 p-3 radius-16">
                     <p className="bodytext1 color-black500 semibold mb-2 flex-fill w-100">Pengaturan Akun</p>
 
-                    <Link to="/profile/edit" className="text-decoration-none d-flex">
+                    <Link to="/profile/edit" title="edit-profile" className="text-decoration-none d-flex">
                       <button className="button-action-profile color-black500 bg-white bodytext1 d-flex flex-row justify-content-between align-items-center flex-fill px-0 py-2">
                           <p className="mb-0 bodytext1 flex-fill text-left">
                             Edit Profil
@@ -71,7 +71,7 @@ const Profile = () => {
                       </button>
                     </Link>
                   
-                    <Link to="/profile/password" className="text-decoration-none d-flex">
+                    <Link to="/profile/password" title="ubah-kata-sandi" className="text-decoration-none d-flex">
                       <button className="button-action-profile color-black500 bg-white bodytext1 d-flex flex-row justify-content-between align-items-center flex-fill px-0 py-2">
                           <p className="mb-0 bodytext1 flex-fill text-left">
                             Ubah Kata Sandi

@@ -7,7 +7,7 @@ const Catalogs = React.memo((props) => {
     return (catalogs.map((data, index) => 
         <div className="d-flex flex-row w-100 justify-content-start flex-wrap" key={index}>
             <div className="d-flex flex-row w-100 align-items-center justify-content-between px-2 py-2">
-                <p className="bodytext1 flex-fill color-black600 mb-0"><b>{data.brand}</b> ({data.total >= 100 ? '99+' : data.total})</p>
+                <h2 className="bodytext1 flex-fill color-black600 mb-0"><b>{data.brand}</b> ({data.total >= 100 ? '99+' : data.total})</h2>
                 <Link to={`/products/${data.brand}`} className="bodytext2 color-green500 mb-0 text-decoration-none">Lihat lainnya</Link>
             </div>
             {data.cars.map((car, i) => 

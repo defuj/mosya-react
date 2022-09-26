@@ -112,7 +112,7 @@ const Products = () => {
 
     const CarContent = React.memo(({data, index}) => {
         return (
-            <Link className="product-items w-50 flex-column lazy" to={`/product/${data.id}/${stringToUrl(data.model)}`} key={index}>
+            <Link title={`detail-mobil-${stringToUrl(data.model)}`} className="product-items w-50 flex-column lazy" to={`/product/${data.id}/${stringToUrl(data.model)}`} key={index}>
                 <div className="lazy product-cover mb-2" style={{backgroundImage : `url('${data.image_cover}')`}}></div>
                 <p className="bodytext1 color-black800 semibold m-0 px-2">{data.model}</p>
                 <p className="bodytext2 color-black300 m-0 px-2">{data.year} | {data.color.length > 0 ? `${data.color.length} Warna` : 'Tidak Ada Warna'}</p>

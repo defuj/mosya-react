@@ -31,7 +31,7 @@ const History = React.memo(() => {
 
     const HistoryContent = React.memo(({data}) => {
         return(
-            <Link to={`/order/${data.id}/detail`} className="d-flex flex-column history-item mb-3 text-decoration-none" key={data.id}>
+            <Link to={`/order/${data.id}/detail`} title={`detail-order-${data.id}`} className="d-flex flex-column history-item mb-3 text-decoration-none" key={data.id}>
                 <div className=" d-flex flex-row justify-content-center align-items-center">
                     <div className="d-flex flex-column flex-fill">
                         <p className="semibold bodytext2 color-black500 mb-0">
@@ -70,7 +70,7 @@ const History = React.memo(() => {
         <>
         <nav className="navbar fixed-top bg-white border-bottom shadow-sm px-0">
             <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 m-auto d-flex justify-content-start align-items-center flex-row py-0 px-xl-3 px-lg-3 px-md-3 px-sm-3 px-3">
-                <p className="navbar-brand mb-0 bodytext1 semibold color-black500 px-1 py-2" title="">
+                <p className="navbar-brand mb-0 bodytext1 semibold color-black500 px-1 py-2" title="back">
                 Riwayat Pemesanan
                 </p>
             </div>

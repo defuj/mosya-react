@@ -223,7 +223,7 @@ const OrderDetail = React.memo(() => {
         {!loading && order !== null && (order.status === 'Belum Bayar' || order.status === 'Dikirim' || order.status === 'Selesai') && 
         <nav id="container-action" className="navbar bottom-nav-buy fixed-bottom navbar-expand bg-white px-3 py-3 shadow-sm col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 text-center m-auto">
             {!loading && order !== null && order.status === 'Belum Bayar' && 
-            <Link to={`/order/${code}/bill`} className="d-flex flex-fill text-decoration-none">
+            <Link to={`/order/${code}/bill`} title={`order-detail-${code}`} className="d-flex flex-fill text-decoration-none">
                 <button type="button" className="button-message flex-fill bodytext2 semibold text-white d-flex flex-row justify-content-center align-items-center background-green500">
                     <p className="mb-0 py-1">Bayar Sekarang</p>
                 </button>
@@ -232,12 +232,12 @@ const OrderDetail = React.memo(() => {
 
             {!loading && order !== null && order.status === 'Dikirim' && 
             <>
-            <Link to="" onClick={orderConfirm} className="d-flex flex-fill text-decoration-none w-50">
+            <Link to="" title="konfirmasi-order" onClick={orderConfirm} className="d-flex flex-fill text-decoration-none w-50">
                 <button type="button" id="buttonConfirm" className="mr-2 button-request-finish bg-white flex-fill bodytext2 semibold color-green500 d-flex flex-row justify-content-center align-items-center" >
                     {progress ? <Spinner/> : 'Pesanan Diterima'}
                 </button>
             </Link>  
-            <Link to={`/order/${code}/tracking`} className="d-flex flex-fill text-decoration-none w-50">
+            <Link to={`/order/${code}/tracking`} title="lacak-pesanan" className="d-flex flex-fill text-decoration-none w-50">
                 <button type="button" className="button-message flex-fill bodytext2 semibold text-white justify-content-center background-green500">
                     Lacak Pesanan
                 </button>
@@ -247,7 +247,7 @@ const OrderDetail = React.memo(() => {
 
             {!loading && order !== null && order.status === 'Selesai' && 
             <>
-            <Link to="/home/catalog" className="d-flex flex-fill text-decoration-none">
+            <Link to="/home/catalog" title="katalog-mobil" className="d-flex flex-fill text-decoration-none">
                 <button type="submit" className="button-message flex-fill bodytext2 semibold text-white d-flex flex-row justify-content-center align-items-center background-green500" >
                     <p className="mb-0 py-1">Belanja Lagi</p>
                 </button>
