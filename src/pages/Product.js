@@ -244,7 +244,7 @@ const Product = () => {
         
                 <p className="color-black500 bodytext1 semibold mb-2 px-3">Kontak</p>
                     <div className="container-contact d-flex flex-row align-items-center px-3 py-3 mx-3 mb-5">
-                    <img src={require('../assets/images/contact.jpg')} alt="image-contact-person" title="content-person" className="mr-3"/>
+                    <img src={require('../assets/images/contact.jpg')} alt="contact-person" title="content-person" className="mr-3"/>
                     <div className="flex-column flex-fill">
                         <p className="mb-0 bodytext1 semibold color-black600">Sintia</p>
                         <p className="mb-0 bodytext2 color-black300">Narahubung</p>

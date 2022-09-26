@@ -23,7 +23,7 @@ const ImageSlider = React.memo((props) => {
             lazy={true}>
             {banners.map((item, index) => 
             <SwiperSlide key={index} onClick={() => openUrl(item.link)}>
-                <img src={item.image} alt={`image-banner-mosya-${index}`} title={`image-banner-mosya-${index}`}/>
+                <img src={item.image} alt={`banner-mosya-${index}`} title={`image-banner-mosya-${index}`}/>
             </SwiperSlide>
             )}
         </Swiper>

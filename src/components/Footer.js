@@ -18,7 +18,7 @@ const Footer = React.memo((props) => {
                     <img src={require('../assets/images/btn-google-play.png')} alt="google-play" title="google-play"/>
                 </Link>
                 <Link className="button-footer px-2" to="">
-                    <img src={require('../assets/images/btn-app-store.png')} alt="app-store" title=""/>
+                    <img src={require('../assets/images/btn-app-store.png')} alt="app-store" title="app-store"/>
                 </Link>
             </div>
 
