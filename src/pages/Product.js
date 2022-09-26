@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import Spinner from "../components/Spinner";
 import Swal from "sweetalert2";
 import ImageSliderNav from "../components/ImageSliderNav";
+import { Helmet } from "react-helmet";
 
 const Product = () => {
     let { id, title } = useParams();
@@ -95,7 +96,7 @@ const Product = () => {
     }
 
     useEffect(() => {
-        document.title = "Mosya - " + safeString(title === undefined ? '' : title.replaceAll('_',' '));
+        document.title = "Jual Mobil " + safeString(title === undefined ? '' : title.replaceAll('_',' '));
         setCar(getDetailCar(id));
         getCar();
     }, []);
@@ -103,6 +104,29 @@ const Product = () => {
 
     return (
         <>
+        {car !== null && 
+        <Helmet
+            title=""
+            meta={[
+                {"name" : "og:title", "content" : `Jual Mobil ${safeString(title === undefined ? '' : title.replaceAll('_',' '))}`},
+                {"name" : "og:description", "content" : car.description},
+                {"name" : "og:image", "content" : car.image.length > 0 ? car.image[0] : 'https://admin.mosya.co.id/helper_assets/images/app_icon_title_h.png'},
+                {"name" : "og:url", "content" : window.location.href},
+                {"name" : "og:type", "content" : "website"},
+                {"name" : "og:site_name", "content" : "Mosya"},
+                {"name" : "twitter:title", "content" : `Jual Mobil ${safeString(title === undefined ? '' : title.replaceAll('_',' '))}`},
+                {"name" : "twitter:description", "content" : car.description},
+                {"name" : "twitter:image", "content" : car.image[0]},
+                {"name" : "twitter:card", "content" : "summary_large_image"},
+                {"name" : "twitter:site", "content" : "@mosya.id"},
+                {"name" : "twitter:creator", "content" : "@mosya.id"},
+
+
+                {"name" : "description", "content" : car.description},
+                {"name" : "keywords", "content" : `beli mobil, jual mobil, mobil bekas, cari mobil, mobil second, mobil cicilan ${car.model}`},
+            ]}/>
+        }
+        
         <nav className="navbar fixed-top bg-white border-bottom shadow-sm px-0">
             <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 m-auto d-flex justify-content-start align-items-center flex-row py-0 px-xl-3 px-lg-3 px-md-3 px-sm-3 px-3">
                 <Link to="" className="navbar-brand" title="back" onClick={() => navigate(-1)}>
@@ -117,16 +141,16 @@ const Product = () => {
 
             {!loading && car === null && <EmptyState/>}
             
-            {car !== null && car.image.length > 0 && <ImageSliderNav banner={car.image}/>}
+            {car !== null && car.image.length > 0 && <ImageSliderNav banner={car.image} car={car}/>}
 
             {car !== null && 
             <div className="container-data mt-5 mb-3">
                 <p className="color-black300 caption semibold mb-0 px-3" id="data-merk">
                     {car.brand}
                 </p>
-                <p className="color-black800 headline5 semibold px-3 mb-0" id="data-model">
+                <h2 className="color-black800 headline5 semibold px-3 mb-0" id="data-model">
                     {car.model}
-                </p>
+                </h2>
                 <p className="color-green500 bodytext1 semibold px-3 mb-4" id="data-price">
                     {car.price}
                 </p>

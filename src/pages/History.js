@@ -59,7 +59,7 @@ const History = React.memo(() => {
     });
 
     useEffect(() => {
-        document.title = "Riwayat Pesanan";
+        document.title = 'Riwayat Pesanan - Mosya - Mobil Bekas Berkualitas - Harga Terbaik di Indonesia';
         setHistory(getHistories());
         setAccount(getAccount());
         getHistory();

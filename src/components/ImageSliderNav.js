@@ -4,8 +4,7 @@ import { Autoplay, Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import "swiper/swiper-bundle.css";
 
-const ImageSliderNav = React.memo((props) => {
-    const banners = props.banner;
+const ImageSliderNav = React.memo(({banner, car}) => {
     const updatePosition = () => {
         try {
             const pagination = document.querySelector('.swiper-pagination');
@@ -26,9 +25,9 @@ const ImageSliderNav = React.memo((props) => {
                 slidesPerView={'auto'}
                 centeredSlides={false}
                 pagination={{ clickable: true }}>
-                {banners.map((item, index) => 
+                {banner.map((item, index) => 
                 <SwiperSlide key={index}>
-                    <img src={item} alt=""/>
+                    <img src={item} alt={index === 0 ? car.model : ''}/>
                 </SwiperSlide>
                 )}
             </Swiper>

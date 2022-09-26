@@ -104,7 +104,7 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        document.title = "Profil";
+        document.title = 'Profil - Mosya - Mobil Bekas Berkualitas - Harga Terbaik di Indonesia';
         if(checkAccount()){
             setLoading(false);
             setAccount(getAccount);

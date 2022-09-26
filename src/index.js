@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
-
 import './assets/styles/typography.css';
-// import './assets/styles/bootstrap.css';
 import './index.css';
 import './assets/styles/style.css';
 import './assets/styles/signin.css';

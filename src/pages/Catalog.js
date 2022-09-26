@@ -40,7 +40,7 @@ const Catalog = React.memo(() => {
     }
 
     useEffect(() => {
-        document.title = "Katalog Mobil";
+        document.title = 'Katalog Mobil - Mosya - Mobil Bekas Berkualitas - Harga Terbaik di Indonesia';
         setLoading(true);
         setCatalog(getCatalogCar())
         getCatalog();
