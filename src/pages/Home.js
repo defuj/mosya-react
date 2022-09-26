@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import '../assets/styles/home.css';
 import axios, {bannerlist, brandlist, carlist} from '../helper/axios';
-import {checkAccount, getAccount, getBannerHome, getBrands, getListCar, setBannerHome, setBrands, setListCar} from '../helper/session';
+import {checkAccount, getAccount, getBannerHome, getBrands, getListCar, setBannerHome, setBrands, setListCar, stringToUrl} from '../helper/session';
 import ImageSlider from "../components/ImageSlider";
 import Loading from "../components/Loading";
 import {Helmet} from "react-helmet";
@@ -102,7 +102,7 @@ const Home = React.memo(() => {
 
     const CarContent = React.memo(({item}) => {
         return (
-            <Link to={`/product/${item.id}/${item.model.replaceAll(' ','_')}`} className="product-items w-50 flex-column" key={item.id}>
+            <Link to={`/product/${item.id}/${stringToUrl(item.model)}`} className="product-items w-50 flex-column" key={item.id}>
                 <div className="product-cover mb-2" style={{backgroundImage: `url(${item.image_cover})`}}></div>
                 <p className="bodytext1 color-black800 semibold m-0 px-2">{item.model}</p>
                 <p className="bodytext2 color-black300 m-0 px-2">{item.year} | {item.color.length > 0 ? `${item.color.length} Warna` : 'Tidak Ada Warna'}</p>
@@ -145,14 +145,15 @@ const Home = React.memo(() => {
     return (
         <main role="main" className="container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0">
             <Helmet
-                title=""
+                title="Mosya - Mobil Bekas Berkualitas - Harga Terbaik di Indonesia"
                 meta={[
-                    {"name" : "og:title", "content" : "Mosya - Mobil Bekas Berkualitas - Harga Terbaik di Indonesia"},
-                    {"name" : "og:description", "content" : "Mosya, pusat jual beli mobil syariah di Indonesia. Semua jenis dan merk mobil ada disini, temukan mobil impianmu hanya di Mosya tempat jual beli mobil syariah aman dan terpercaya"},
-                    {"name" : "og:image", "content" : 'https://admin.mosya.co.id/helper_assets/images/app_icon_title_h.png'},
-                    {"name" : "og:url", "content" : window.location.href},
-                    {"name" : "og:type", "content" : "website"},
-                    {"name" : "og:site_name", "content" : "Mosya"},
+                    {"property" : "og:title", "content" : "Mosya - Mobil Bekas Berkualitas - Harga Terbaik di Indonesia"},
+                    {"property" : "og:description", "content" : "Mosya, pusat jual beli mobil syariah di Indonesia. Semua jenis dan merk mobil ada disini, temukan mobil impianmu hanya di Mosya tempat jual beli mobil syariah aman dan terpercaya"},
+                    {"property" : "og:image", "content" : 'https://admin.mosya.co.id/helper_assets/images/app_icon_title_h.png'},
+                    {"property" : "og:image:type", "content" : 'image/png'},
+                    {"property" : "og:url", "content" : window.location.href},
+                    {"property" : "og:type", "content" : "website"},
+                    {"property" : "og:site_name", "content" : "Mosya"},
 
                     {"name" : "twitter:title", "content" : 'Mosya - Mobil Bekas Berkualitas - Harga Terbaik di Indonesia'},
                     {"name" : "twitter:description", "content" : "Mosya, pusat jual beli mobil syariah di Indonesia. Semua jenis dan merk mobil ada disini, temukan mobil impianmu hanya di Mosya tempat jual beli mobil syariah aman dan terpercaya"},
@@ -163,7 +164,11 @@ const Home = React.memo(() => {
 
                     {"name" : "description", "content" : "Mosya, pusat jual beli mobil syariah di Indonesia. Semua jenis dan merk mobil ada disini, temukan mobil impianmu hanya di Mosya tempat jual beli mobil syariah aman dan terpercaya"},
                     {"name" : "keywords", "content" : "cari mobil murah, mobil bekas murah, harga mobil bekas dibawah 50 juta, beli mobil bekas, mobil bekas, jual beli mobil bekas, mobil second murah, beli mobil second, jual mobil bekas, mobil cicilan syariah, mobil cicilan tanpa bunga, mobil cicilan syariah"},
-                    
+                    {"name" : "author", "content" : "Sadigit"},
+                    {"name" : "robots", "content" : "index, follow"},
+                    {"name" : "googlebot", "content" : "index, follow"},
+                    {"name" : "publisher", "content" : "Mosya"},
+                    {"name" : "", "content" : ""},
                 ]}/>
             <div className="container-user d-flex flex-row justify-content-between px-3 py-4">
                 <div className="content-text flex-column w-100">
@@ -177,7 +182,7 @@ const Home = React.memo(() => {
                 </div>
                 <Link className="content-image-profile flex-shrink" to="/home/profile">
                     <div className="frame-image">
-                        <img src={checkAccount() && getAccount().image !== null && getAccount().image !== '' ? getAccount().image : 'https://defuj.github.io/mosya.bootstrap/assets/images/user-default.png'} alt="profile" id="dataImage"/>
+                        <img src={checkAccount() && getAccount().image !== null && getAccount().image !== '' ? getAccount().image : 'https://defuj.github.io/mosya.bootstrap/assets/images/user-default.png'} alt="profile" id="dataImage" title="image-profile"/>
                     </div>
                 </Link>
             </div>

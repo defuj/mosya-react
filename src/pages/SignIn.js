@@ -113,7 +113,7 @@ const Signin = () => {
     return (
         <form className="form-signin text-center" style={{maxWidth: '300px'}}>
 			<Link to="/home" className="text-decoration-none">
-				<img className="mb-4 w-100" src={icon} alt=""/>
+				<img className="mb-4 w-100" src={icon} alt="mosya-icon" title="mosya-icon"/>
 			</Link>
 
 			<div className="input-group-custom">

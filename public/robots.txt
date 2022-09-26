@@ -1,3 +1,11 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /otp
+Disallow: /forgot_password
+Disallow: /reset_password
+Disallow: /home/profile
+Disallow: /home/history
+Disallow: /profile/
+Disallow: /profile/edit
+Disallow: /profile/passwod
+Disallow: /order/

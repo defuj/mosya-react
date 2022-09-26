@@ -5,6 +5,7 @@ import Loading from '../components/Loading';
 import EmptyState from '../components/EmptyState';
 import { useNavigate } from "react-router-dom";
 import { getCatalogCar, safeString, setCatalogCar } from "../helper/session";
+import {Helmet} from "react-helmet";
 
 const Catalog = React.memo(() => {
     const [catalog, setCatalog] = useState(getCatalogCar());
@@ -46,9 +47,34 @@ const Catalog = React.memo(() => {
         getCatalog();
     }, []);
     
-
     return (
         <>
+        <Helmet
+            title="Katalog Mobil - Harga Terbaik di Indonesia"
+            meta={[
+                {"property" : "og:title", "content" : "Katalog Mobil - Harga Terbaik di Indonesia"},
+                {"property" : "og:description", "content" : "Mosya, pusat jual beli mobil syariah di Indonesia. Semua jenis dan merk mobil ada disini, temukan mobil impianmu hanya di Mosya tempat jual beli mobil syariah aman dan terpercaya"},
+                {"property" : "og:image", "content" : 'https://admin.mosya.co.id/helper_assets/images/app_icon_title_h.png'},
+                {"property" : "og:image:type", "content" : 'image/png'},
+                {"property" : "og:url", "content" : window.location.href},
+                {"property" : "og:type", "content" : "website"},
+                {"property" : "og:site_name", "content" : "Mosya"},
+
+                {"name" : "twitter:title", "content" : 'Katalog Mobil - Harga Terbaik di Indonesia'},
+                {"name" : "twitter:description", "content" : "Mosya, pusat jual beli mobil syariah di Indonesia. Semua jenis dan merk mobil ada disini, temukan mobil impianmu hanya di Mosya tempat jual beli mobil syariah aman dan terpercaya"},
+                {"name" : "twitter:image", "content" : "https://admin.mosya.co.id/helper_assets/images/app_icon_title_h.png"},
+                {"name" : "twitter:card", "content" : "summary_large_image"},
+                {"name" : "twitter:site", "content" : "@mosya.id"},
+                {"name" : "twitter:creator", "content" : "@mosya.id"},
+
+                {"name" : "description", "content" : "Mosya, pusat jual beli mobil syariah di Indonesia. Semua jenis dan merk mobil ada disini, temukan mobil impianmu hanya di Mosya tempat jual beli mobil syariah aman dan terpercaya"},
+                {"name" : "keywords", "content" : "cari mobil murah, mobil bekas murah, harga mobil bekas dibawah 50 juta, beli mobil bekas, mobil bekas, jual beli mobil bekas, mobil second murah, beli mobil second, jual mobil bekas, mobil cicilan syariah, mobil cicilan tanpa bunga, mobil cicilan syariah"},
+                {"name" : "author", "content" : "Sadigit"},
+                {"name" : "robots", "content" : "index, follow"},
+                {"name" : "googlebot", "content" : "index, follow"},
+                {"name" : "publisher", "content" : "Mosya"},
+            ]}
+        />
         <nav className="navbar fixed-top bg-white border-bottom shadow-sm px-0">
             <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 m-auto d-flex justify-content-between align-items-center flex-column py-0 px-xl-3 px-lg-3 px-md-3 px-sm-3 px-3">
                 <form onSubmit={onSearch} id="form-search" className="container-search form-search w-100 d-flex justify-content-between align-items-center" style={{height: '48px'}}>

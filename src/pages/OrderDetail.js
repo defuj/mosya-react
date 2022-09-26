@@ -154,7 +154,7 @@ const OrderDetail = React.memo(() => {
             </div>
 
             <div className="d-flex flex-row bg-white px-3 py-3 product-section-payment justify-content-between mb-2">
-                <img id="dataImage" src={order.car.image} alt=""/>
+                <img id="dataImage" src={order.car.image} alt={order.car.model.replaceAll(' ','-').replaceAll('.','-').toLowerCase()} title={order.car.model.replaceAll(' ','-').replaceAll('.','-').toLowerCase()}/>
                 <div className="flex-fill ml-3">
                     <p className="caption color-green500 semibold mb-0" id="dataBrand">{order.car.brand}</p>
                     <p className="bodytext1 semibold color-black800 mb-0" id="dataModel">{order.car.model}</p>
@@ -202,7 +202,7 @@ const OrderDetail = React.memo(() => {
                 </p>
 
                 <div className="container-contact d-flex flex-row align-items-center px-3 py-3">
-                    <img src={require('../assets/images/contact.jpg')} alt="" className="mr-3"/>
+                    <img src={require('../assets/images/contact.jpg')} alt="contact-person" title="contact-person" className="mr-3"/>
                     <div className="flex-column flex-fill">
                         <p className="mb-0 bodytext1 semibold color-black600">Sintia</p>
                         <p className="mb-0 bodytext2 color-black300">Narahubung</p>

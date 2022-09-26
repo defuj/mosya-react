@@ -15,10 +15,10 @@ const Footer = React.memo((props) => {
             <p className="bodytext1 color-black400 text-center">Lebih mudah mencari mobil impian kamu hanya tinggal scroll dan klik klik aja.</p>
             <div className="container-footer-button d-flex justify-content-center">
                 <Link className="button-footer px-2" to="">
-                    <img src={require('../assets/images/btn-google-play.png')} alt=""/>
+                    <img src={require('../assets/images/btn-google-play.png')} alt="google-play" title="google-play"/>
                 </Link>
                 <Link className="button-footer px-2" to="">
-                    <img src={require('../assets/images/btn-app-store.png')} alt=""/>
+                    <img src={require('../assets/images/btn-app-store.png')} alt="app-store" title="app-store"/>
                 </Link>
             </div>
 

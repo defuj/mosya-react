@@ -27,7 +27,7 @@ const ImageSliderNav = React.memo(({banner, car}) => {
                 pagination={{ clickable: true }}>
                 {banner.map((item, index) => 
                 <SwiperSlide key={index}>
-                    <img src={item} alt={index === 0 ? car.model : ''}/>
+                    <img src={item} alt={index === 0 ? car.model : `${car.model}-${index}`} title={`${car.model}-${index}`}/>
                 </SwiperSlide>
                 )}
             </Swiper>

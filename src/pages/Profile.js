@@ -34,7 +34,7 @@ const Profile = () => {
             <div className="container-user d-flex flex-column w-100 px-3 py-4 mb-4">
                 <div className="content-profile d-flex flex-column align-items-center mt-2 py-4">
                     <div className="container-image-profile">
-                        <img src={account.image !== null && account.image !== '' ? account.image : 'https://defuj.github.io/mosya.bootstrap/assets/images/user-default.png'} alt="profile" className="image-profile" id="dataImage"/>
+                        <img src={account.image !== null && account.image !== '' ? account.image : 'https://defuj.github.io/mosya.bootstrap/assets/images/user-default.png'} alt="profile" title="image-profile" className="image-profile" id="dataImage"/>
                     </div>
                     <div className="data-profile d-flex flex-column flex-fill">
                         <p className="headline5 color-black500 semibold p-0 mb-2 mt-2 text-center" id="dataName">

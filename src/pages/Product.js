@@ -3,7 +3,7 @@ import axios, {cardetail} from '../helper/axios';
 import Loading from '../components/Loading';
 import EmptyState from '../components/EmptyState';
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { changeColorSelected, getDetailCar, safeString, setCurrentCar, setDetailCar } from "../helper/session";
+import { changeColorSelected, getDetailCar, setCurrentCar, setDetailCar } from "../helper/session";
 import Footer from "../components/Footer";
 import Spinner from "../components/Spinner";
 import Swal from "sweetalert2";
@@ -11,7 +11,7 @@ import ImageSliderNav from "../components/ImageSliderNav";
 import { Helmet } from "react-helmet";
 
 const Product = () => {
-    let { id, title } = useParams();
+    let { id } = useParams();
     const [car, setCar] = useState(getDetailCar(id));
     const [loading, setLoading] = useState(false);
     const [onOrder, setOnOrder] = useState(false);
@@ -96,7 +96,6 @@ const Product = () => {
     }
 
     useEffect(() => {
-        document.title = "Jual Mobil " + safeString(title === undefined ? '' : title.replaceAll('_',' '));
         setCar(getDetailCar(id));
         getCar();
     }, []);
@@ -106,24 +105,28 @@ const Product = () => {
         <>
         {car !== null && 
         <Helmet
-            title=""
+            title={`Jual Mobil ${car.model}`}
             meta={[
-                {"name" : "og:title", "content" : `Jual Mobil ${safeString(title === undefined ? '' : title.replaceAll('_',' '))}`},
-                {"name" : "og:description", "content" : car.description},
-                {"name" : "og:image", "content" : car.image.length > 0 ? car.image[0] : 'https://admin.mosya.co.id/helper_assets/images/app_icon_title_h.png'},
-                {"name" : "og:url", "content" : window.location.href},
-                {"name" : "og:type", "content" : "website"},
-                {"name" : "og:site_name", "content" : "Mosya"},
-                {"name" : "twitter:title", "content" : `Jual Mobil ${safeString(title === undefined ? '' : title.replaceAll('_',' '))}`},
-                {"name" : "twitter:description", "content" : car.description},
+                {"property" : "og:title", "content" : `Jual Mobil ${car.model}`},
+                {"property" : "og:description", "content" : car.description.replace(/(\r\n|\n|\r)/gm, "")},
+                {"property" : "og:image", "content" : car.image.length > 0 ? car.image[0] : 'https://admin.mosya.co.id/helper_assets/images/app_icon_title_h.png'},
+                {"property" : "og:image:type", "content" : "image/png"},
+                {"property" : "og:url", "content" : window.location.href},
+                {"property" : "og:type", "content" : "website"},
+                {"property" : "og:site_name", "content" : "Mosya"},
+                {"name" : "twitter:title", "content" : `Jual Mobil ${car.model}`},
+                {"name" : "twitter:description", "content" : car.description.replace(/(\r\n|\n|\r)/gm, "")},
                 {"name" : "twitter:image", "content" : car.image[0]},
                 {"name" : "twitter:card", "content" : "summary_large_image"},
                 {"name" : "twitter:site", "content" : "@mosya.id"},
                 {"name" : "twitter:creator", "content" : "@mosya.id"},
 
-
-                {"name" : "description", "content" : car.description},
-                {"name" : "keywords", "content" : `beli mobil, jual mobil, mobil bekas, cari mobil, mobil second, mobil cicilan ${car.model}`},
+                {"name" : "description", "content" : car.description.replace(/(\r\n|\n|\r)/gm, "")},
+                {"name" : "keywords", "content" : `beli mobil, jual mobil, mobil bekas, cari mobil, mobil second, mobil cicilan ${car.model.toLowerCase()}`},
+                {"name" : "author", "content" : "Sadigit"},
+                {"name" : "robots", "content" : "index, follow"},
+                {"name" : "googlebot", "content" : "index, follow"},
+                {"name" : "publisher", "content" : "Mosya"},
             ]}/>
         }
         
@@ -241,7 +244,7 @@ const Product = () => {
         
                 <p className="color-black500 bodytext1 semibold mb-2 px-3">Kontak</p>
                     <div className="container-contact d-flex flex-row align-items-center px-3 py-3 mx-3 mb-5">
-                    <img src={require('../assets/images/contact.jpg')} alt="" className="mr-3"/>
+                    <img src={require('../assets/images/contact.jpg')} alt="image-contact-person" title="content-person" className="mr-3"/>
                     <div className="flex-column flex-fill">
                         <p className="mb-0 bodytext1 semibold color-black600">Sintia</p>
                         <p className="mb-0 bodytext2 color-black300">Narahubung</p>
@@ -280,7 +283,7 @@ const Product = () => {
                     </div>
                     <div className="modal-body">
                         <div className="d-flex flex-row product-section-payment justify-content-between mb-3">
-                            <img id="dataImage" src={car.image_cover} alt=""/>
+                            <img id="dataImage" title={car.model.replaceAll(' ','-').replaceAll('.','-').toLowerCase()} src={car.image_cover} alt={car.model.replaceAll(' ','-').replaceAll('.','-').toLowerCase()}/>
                             <div className="flex-fill ml-3">
                                 <p className="caption color-green500 semibold mb-0" id="dataMerk">{car.brand}</p>
                                 <p className="headline6 semibold color-black800 mb-0" id="dataModel">{car.model}</p>

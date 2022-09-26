@@ -327,7 +327,7 @@ const OrderPaymentMethod = React.memo(() => {
                     Rencana Pembayaran
                 </p>
                 <div className="d-flex flex-row product-section-payment justify-content-between mb-3">
-                    <img id="dataImage" src={car.image_cover} alt=""/>
+                    <img id="dataImage" src={car.image_cover} alt={car.model.replaceAll(' ','-').replaceAll('.','-').toLowerCase()} title={car.model.replaceAll(' ','-').replaceAll('.','-').toLowerCase()}/>
                     <div className="flex-fill ml-3">
                         <p className="caption color-green500 semibold mb-0" id="dataMerk">{car.brand}</p>
                         <p className="headline6 semibold color-black800 mb-0" id="dataModel">{car.model}</p>

@@ -47,7 +47,7 @@ const History = React.memo(() => {
                 </div>
 
                 <div className="d-flex flex-row align-items-center mt-2">
-                    <img src={data.image} alt="" className=""/>
+                    <img src={data.image} alt={data.model.replaceAll(' ','-').replaceAll('.','-').toLowerCase()} title={data.model.replaceAll(' ','-').replaceAll('.','-').toLowerCase()}/>
                     <div className="d-flex flex-fill flex-column pl-3">
                         <p className="caption semibold color-green500 mb-0">{data.brand}</p>
                         <p className="bodytext1 semibold color-black800 mb-0">{data.model}</p>

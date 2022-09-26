@@ -110,7 +110,7 @@ const UpdateProfile = () => {
             <main role="main" className="container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 mt-5">
             <form encType="multipart/form-data" className="container-user d-flex justify-content-center flex-column w-100 px-3 py-4 mb-4">
                 <label className="container-image-profile mx-auto" htmlFor="choose-image">
-                    <img src={user.image !== null && user.image !== '' ? user.image : 'https://defuj.github.io/mosya.bootstrap/assets/images/user-default.png'} alt="profile" className="image-profile" id="image-profile"/>
+                    <img src={user.image !== null && user.image !== '' ? user.image : 'https://defuj.github.io/mosya.bootstrap/assets/images/user-default.png'} alt="profile" title="image-profile" className="image-profile" id="image-profile"/>
                     <input type="file" name="picture"  id="choose-image" accept="image/png, image/gif, image/jpeg" onChangeCapture={e => handleImage(e)} hidden/>
                     <i className="fi fi-rr-camera change-picture"></i>
                 </label>

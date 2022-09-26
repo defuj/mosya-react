@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { stringToUrl } from "../helper/session";
 
 const Catalogs = React.memo((props) => {
     const catalogs = props.catalog;
@@ -10,10 +11,10 @@ const Catalogs = React.memo((props) => {
                 <Link to={`/products/${data.brand}`} className="bodytext2 color-green500 mb-0 text-decoration-none">Lihat lainnya</Link>
             </div>
             {data.cars.map((car, i) => 
-                <Link className="product-items w-50 flex-column" to={`/product/${car.id}/${car.model.replaceAll(' ','_')}`} key={`car-${car.id}`}>
+                <Link className="product-items w-50 flex-column" to={`/product/${car.id}/${stringToUrl(car.model)}`} key={`car-${car.id}`}>
                     <div className="product-cover mb-2" style={{backgroundImage: `url('${car.image_cover}')`}}></div>
                     <p className="bodytext1 color-black800 semibold m-0 px-2">{car.model}</p>
-                    <p className="bodytext2 color-black300 m-0 px-2">{car.year} {car.color}</p>
+                    <p className="bodytext2 color-black300 m-0 px-2">{car.year} | {car.color.length > 0 ? `${car.color.length} Warna` : 'Tidak Ada Warna'}</p>
                     <p className="bodytext2 semibold color-green500 m-0 py-1 px-2">{car.price}</p>
                 </Link>
             )}
