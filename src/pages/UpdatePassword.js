@@ -2,11 +2,12 @@ import React, {useState, useEffect} from "react";
 import {
   Link,useNavigate
 } from "react-router-dom";
-import { getAccount, safeString } from "../helper/session";
+import { getAccount } from "../helper/session";
 import Swal from "sweetalert2";
 import Footer from "../components/Footer";
 import axios from "../helper/axios";
 import Spinner from "../components/Spinner";
+import { safeString } from "../helper/others";
 
 const UpdatePassword = () => {
     const [user, setUser] = useState(getAccount);

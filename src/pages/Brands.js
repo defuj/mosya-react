@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 import axios, { brandlist, carlist } from "../helper/axios";
 import Loading from "../components/Loading";
 import EmptyState from "../components/EmptyState";
-import { safeString } from "../helper/session";
+import { safeString } from "../helper/others";
 
 const Brands = () => {
     let { keyword } = useParams();

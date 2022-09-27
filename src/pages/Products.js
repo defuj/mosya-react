@@ -3,8 +3,9 @@ import axios, {carlist} from '../helper/axios';
 import Loading from '../components/Loading';
 import EmptyState from '../components/EmptyState';
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getListCar, safeString, stringToUrl } from "../helper/session";
+import { getListCar } from "../helper/session";
 import Footer from "../components/Footer";
+import { safeString, stringToUrl } from "../helper/others";
 
 const Products = () => {
     let { keyword } = useParams();

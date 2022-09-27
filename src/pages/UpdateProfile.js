@@ -3,11 +3,12 @@ import {
     Link,
     useNavigate
   } from "react-router-dom";
-import { checkAccount, getAccount, safeString, setAccount } from "../helper/session";
+import { checkAccount, getAccount, setAccount } from "../helper/session";
 import Swal from "sweetalert2";
 import Footer from "../components/Footer";
 import axios, { updateprofile } from "../helper/axios";
 import Spinner from "../components/Spinner";
+import { safeString } from "../helper/others";
 
 const UpdateProfile = () => {
     const [user, setUser] = useState(getAccount);

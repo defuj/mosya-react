@@ -3,8 +3,9 @@ import '../assets/styles/home.css';
 
 import Footer from '../components/Footer';
 import BottomNavigation from '../components/BottomNavigation';
-import { checkAccount, getAccount, safeString, setAccount } from "../helper/session";
+import { checkAccount, getAccount, setAccount } from "../helper/session";
 import { Helmet } from "react-helmet";
+import { safeString } from "../helper/others";
 
 const Main = (props) => {
     const configClass = () => {

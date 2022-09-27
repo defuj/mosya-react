@@ -339,11 +339,3 @@ export const checkSession = () => {
         }
     }
 }
-
-export const safeString = (content) => {
-    return content.toString().replace(/</g, "&lt;").replace(/>/g, "&gt;")
-}
-
-export const stringToUrl = (content) => {
-    return content.toString().replaceAll(' ', '-').replaceAll('.', '-').replaceAll('/','-').toLowerCase();
-}

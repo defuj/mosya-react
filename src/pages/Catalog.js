@@ -4,8 +4,9 @@ import Catalogs from "../components/Catalog";
 import Loading from '../components/Loading';
 import EmptyState from '../components/EmptyState';
 import { useNavigate } from "react-router-dom";
-import { getCatalogCar, safeString, setCatalogCar } from "../helper/session";
+import { getCatalogCar, setCatalogCar } from "../helper/session";
 import {Helmet} from "react-helmet";
+import { safeString } from "../helper/others";
 
 const Catalog = React.memo(() => {
     const [catalog, setCatalog] = useState(getCatalogCar());

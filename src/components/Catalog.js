@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { stringToUrl } from "../helper/session";
+import { stringToUrl } from "../helper/others";
 
 const Catalogs = React.memo((props) => {
     const catalogs = props.catalog;

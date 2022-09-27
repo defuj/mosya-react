@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 import '../assets/styles/home.css';
 import axios, {bannerlist, brandlist, carlist} from '../helper/axios';
-import {checkAccount, getAccount, getBannerHome, getBrands, getListCar, setBannerHome, setBrands, setListCar, stringToUrl} from '../helper/session';
+import {checkAccount, getAccount, getBannerHome, getBrands, getListCar, setBannerHome, setBrands, setListCar} from '../helper/session';
 import ImageSlider from "../components/ImageSlider";
 import Loading from "../components/Loading";
 import {Helmet} from "react-helmet";
+import { stringToUrl } from "../helper/others";
 
 const Home = React.memo(() => {
     const [banner, setBanner] = useState(getBannerHome());
@@ -130,6 +131,12 @@ const Home = React.memo(() => {
             </>
         )
     }
+
+    // const testFunction = async () => {
+    //     await imageUrlToBase64('https://admin.mosya.co.id/assets/banner/31-08-22-11-54-38.jpg', (result) => {
+    //         console.log(result);
+    //     })
+    // }
 
     useEffect(() => {
         document.title = 'Mosya - Mobil Bekas Berkualitas - Harga Terbaik di Indonesia';

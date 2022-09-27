@@ -4,7 +4,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import {checkAccount, safeString} from './helper/session';
+import {checkAccount} from './helper/session';
 
 import Signin from './pages/SignIn';
 import Signup from './pages/SignUp';
@@ -27,6 +27,7 @@ import OrderPaymentMethod from "./pages/OrderPaymentMethod";
 import OrderBill from "./pages/OrderBill";
 import OrderDetail from "./pages/OrderDetail";
 import OrderTracking from "./pages/OrderTracking";
+import { safeString } from "./helper/others";
 
 const App = () => {
   const configClass = () => {
