@@ -76,7 +76,7 @@ const History = React.memo(() => {
             </div>
         </nav>
 
-        <main role="main" className="container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 mt-5 pt-4" style={{minHeight: '300px'}}>
+        <main role="main" className="container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 mt-5 pt-4" style={{minHeight: 'calc(100% - 365px)'}}>
             {loading && history.length === 0 && <Loading />}
             {!loading && history.length === 0 && <EmptyState title="Tidak Ada Riwayat" desc="Anda belum melakukan pemesanan mobil" />}
             {history.length > 0 && 

@@ -7,7 +7,7 @@ import {checkAccount, getAccount, getBannerHome, getBrands, getListCar, setBanne
 import ImageSlider from "../components/ImageSlider";
 import Loading from "../components/Loading";
 import {Helmet} from "react-helmet";
-import { stringToUrl } from "../helper/others";
+import { slugify } from "../helper/others";
 
 const Home = React.memo(() => {
     const [banner, setBanner] = useState(getBannerHome());
@@ -103,7 +103,7 @@ const Home = React.memo(() => {
 
     const CarContent = React.memo(({item}) => {
         return (
-            <Link to={`/product/${item.id}/${stringToUrl(item.model)}`} title={`detail-mobil-${stringToUrl(item.model)}`} className="product-items w-50 flex-column" key={item.id}>
+            <Link to={`/product/${item.id}/${slugify(item.model)}`} title={`detail-mobil-${slugify(item.model)}`} className="product-items w-50 flex-column" key={item.id}>
                 <div className="product-cover mb-2" style={{backgroundImage: `url(${item.image_cover})`}}></div>
                 <p className="bodytext1 color-black800 semibold m-0 px-2">{item.model}</p>
                 <p className="bodytext2 color-black300 m-0 px-2">{item.year} | {item.color.length > 0 ? `${item.color.length} Warna` : 'Tidak Ada Warna'}</p>
@@ -133,7 +133,7 @@ const Home = React.memo(() => {
     }
 
     // const testFunction = async () => {
-    //     await imageUrlToBase64('https://admin.mosya.co.id/assets/banner/31-08-22-11-54-38.jpg', (result) => {
+    //     imageUrlToBase64('https://admin.mosya.co.id/assets/banner/31-08-22-11-54-38.jpg', (result) => {
     //         console.log(result);
     //     })
     // }

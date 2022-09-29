@@ -2,19 +2,21 @@ export const safeString = (content) => {
     return content.toString().replace(/</g, "&lt;").replace(/>/g, "&gt;")
 }
 
-export const stringToUrl = (content) => {
-    return content.toString().replaceAll(' ', '-').replaceAll('.', '-').replaceAll('/','-').toLowerCase();
-}
+export const slugify = (str) =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 
 export const imageUrlToBase64 = async (url, callback) => {
     const axios = require('axios');
     await axios.get(url, {
-        crossdomain: true,
+        mode : 'no-cors',
         responseType: 'arraybuffer',
         headers: {
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
         },
     })
     .then(response => {
