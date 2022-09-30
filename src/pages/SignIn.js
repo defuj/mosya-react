@@ -126,10 +126,10 @@ const Signin = () => {
 				<input onChange={e => setPassword(e.target.value)} type="password" name="password" id="inputPassword" className="form-input bodytext2" placeholder="Kata Sandi" required />
 			</div>
 
-			<Link to="/forgot_password" title="lupa-kata-sandi" className="mb-3 mt-2 font-weight-normal color-primary float-right bodytext2">
+			{/* <Link to="/forgot_password" title="lupa-kata-sandi" className="mb-3 mt-2 font-weight-normal color-primary float-right bodytext2">
                 Lupa kata sandi?
-            </Link>
-			<button disabled={onProgress && 'disabled'} onClick={handleSignin} className="btn btn-lg btn-block button-primary bodytext2" type="button" id="buttonLogin">
+            </Link> */}
+			<button disabled={onProgress && 'disabled'} onClick={handleSignin} className="btn btn-lg btn-block button-primary bodytext2 mt-3" type="button" id="buttonLogin">
 				{onProgress ? <Spinner/> : 'Masuk'}
 			</button>
 			<p className="mt-3 mb-1 bodytext2">

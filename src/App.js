@@ -9,9 +9,9 @@ import {checkAccount} from './helper/session';
 import Signin from './pages/SignIn';
 import Signup from './pages/SignUp';
 import Main from './pages/Main';
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
-import OneTimePassword from './pages/OneTimePassword';
+// import ForgotPassword from './pages/ForgotPassword';
+// import ResetPassword from './pages/ResetPassword';
+// import OneTimePassword from './pages/OneTimePassword';
 import UpdateProfile from "./pages/UpdateProfile";
 import UpdatePassword from "./pages/UpdatePassword";
 import Products from "./pages/Products";
@@ -39,9 +39,9 @@ const App = () => {
       <Route exact path="/" element={<Navigate to="/home" replace="true"/>} />
       <Route path="/signin" element={checkAccount() ? <Navigate to="/home" replace="true"/> : <Signin/>} /> 
       <Route path="/signup" element={checkAccount() ? <Navigate to="/home" replace="true"/> : <Signup/>} /> 
-      <Route path="/forgot_password" element={checkAccount() ? <Navigate to="/home" replace="true"/> : <ForgotPassword/>} /> 
+      {/* <Route path="/forgot_password" element={checkAccount() ? <Navigate to="/home" replace="true"/> : <ForgotPassword/>} /> 
       <Route path="/reset_password" element={checkAccount() ? <Navigate to="/home" replace="true"/> : <ResetPassword/>} /> 
-      <Route path="/otp" element={checkAccount() ? <Navigate to="/home" replace="true"/> : <OneTimePassword/>} /> 
+      <Route path="/otp" element={checkAccount() ? <Navigate to="/home" replace="true"/> : <OneTimePassword/>} />  */}
       <Route path="/home">
         <Route path="" element={<Main component={Home}/>} />  
         <Route path="catalog" element={<Main component={Catalog}/>} /> 
