@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import Spinner from '../components/Spinner';
 import axios,{signup} from '../helper/axios';
+import { validateEmail, validatePhone } from "../helper/others";
 
 const Signup = () => {
 	useEffect(() => {
@@ -24,51 +25,69 @@ const Signup = () => {
 
 	const handleSignup = async () => {
 		if(name !== '' && phone !== '' && email !== '' && password !== '' && passwordConfirm !== ''){
-			if(password === passwordConfirm){
-				setContentProgress(true)
-				await axios.postForm(signup, {
-					name: name,
-					phone: phone,
-					email: email,
-					password: password,
-				  })
-				  .then(response => {
-					setContentProgress(false)
-					let result = response.data;
-					if(result.status){
-					  Swal.fire({
-						icon: 'success',
-						title: 'Selamat!',
-						text: 'Akun kamu berhasil dibuat!',
-						confirmButtonText: 'Masuk'
-					  }).then((result) => {
-						if (result.value) {
-						  navigate('/signin');
-						}
-					  })
+			if(validatePhone(phone)){
+				if(validateEmail(email)){
+					if(password === passwordConfirm){
+						setContentProgress(true)
+						await axios.postForm(signup, {
+							name: name,
+							phone: phone,
+							email: email,
+							password: password,
+						  })
+						  .then(response => {
+							setContentProgress(false)
+							let result = response.data;
+							if(result.status){
+							  Swal.fire({
+								icon: 'success',
+								title: 'Selamat!',
+								text: 'Akun kamu berhasil dibuat!',
+								confirmButtonText: 'Masuk'
+							  }).then((result) => {
+								if (result.value) {
+								  navigate('/signin');
+								}
+							  })
+							}else{
+							  Swal.fire({
+								icon: 'error',
+								title: 'Perhatian',
+								text: result.message,
+								confirmButtonText: 'Mengerti',
+							  })
+							}
+						  })
+						  .catch(error=>{
+							setContentProgress(false)
+							Swal.fire({
+								icon: 'error',
+								title: 'Perhatian',
+								text: 'Terjadi kesalahan! Silahkan coba lagi',
+								confirmButtonText: 'Mengerti',
+							  })
+						  })
 					}else{
-					  Swal.fire({
-						icon: 'error',
-						title: 'Perhatian',
-						text: result.message,
-						confirmButtonText: 'Mengerti',
-					  })
+						Swal.fire({
+							title: 'Perhatian',
+							text: 'Kata sandi tidak sama!',
+							icon: 'error',
+							confirmButtonText: 'Mengerti',
+						})
 					}
-				  })
-				  .catch(error=>{
-					setContentProgress(false)
+				}else{
 					Swal.fire({
 						icon: 'error',
 						title: 'Perhatian',
-						text: 'Terjadi kesalahan! Silahkan coba lagi',
+						text: 'Email tidak valid!',
 						confirmButtonText: 'Mengerti',
-					  })
-				  })
+					})
+				}
 			}else{
 				Swal.fire({
-					title: 'Perhatian',
-					text: 'Kata sandi tidak sama!',
 					icon: 'error',
+					title: 'Perhatian',
+					text: 'Nomor telepon tidak valid!',
 					confirmButtonText: 'Mengerti',
 				})
 			}
