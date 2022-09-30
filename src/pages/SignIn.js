@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import Spinner from '../components/Spinner';
 import axios, {signin} from '../helper/axios';
 import {setAccount} from '../helper/session';
+import { validateEmail } from "../helper/others";
 
 const Signin = () => {
 	const navigate = useNavigate();
@@ -53,60 +54,70 @@ const Signin = () => {
 				confirmButtonText: 'Mengerti',
 			})
 		}else{
-			setProgress(true)
-			await axios.postForm(signin, {
-				email: email,
-				password: password
-			  })
-			  .then(function(response) {
-				setProgress(false)
-				const result = response.data;
-				if(result.status){
-				  const account = result.data;
-				  if(account !== undefined){
-					setAccount(account);
-					// let page = getLastPage();
-					// if(page != null){
-					// 	navigate(page);
-					//   	deleteLastPage();
-					// }else{
-					// 	// window.location.href = '/home';
-					// 	navigate('/home', { replace: true });
-					// }
-					// navigate('/home', { replace: true });
-					// if(navigate.length > 0){
-					// 	// navigate(-1, { replace: true });
-					// 	window.history.back();
-					// }else{
-					// 	window.location.href = '/home';
-					// }
-					prepareMain();
-				  }else{
-					Swal.fire({
-					  title: 'Perhatian',
-					  text: 'Terjadi kesalahan! Silahkan coba lagi.',
-					  icon: 'error',
-					  confirmButtonText: 'Mengerti',
-					})
-				  }
-				  
-				}else{
-				  Swal.fire({
-					title: 'Perhatian',
-					text: result.message,
-					icon: 'error',
-					confirmButtonText: 'Mengerti'
-				  })
-				}
-			  }).catch((error)=> {
-				setProgress(false)
-				Swal.fire({
-				  title: 'Perhatian',
-				  text: 'Terjadi kesalahan! Silahkan coba lagi.',
-				  icon: 'error',
-				  confirmButtonText: 'Mengerti',
+			if(validateEmail(email)){
+				setProgress(true)
+				await axios.postForm(signin, {
+					email: email,
+					password: password
 				})
-			  });
+				.then(function(response) {
+					setProgress(false)
+					const result = response.data;
+					if(result.status){
+					const account = result.data;
+					if(account !== undefined){
+						setAccount(account);
+						// let page = getLastPage();
+						// if(page != null){
+						// 	navigate(page);
+						//   	deleteLastPage();
+						// }else{
+						// 	// window.location.href = '/home';
+						// 	navigate('/home', { replace: true });
+						// }
+						// navigate('/home', { replace: true });
+						// if(navigate.length > 0){
+						// 	// navigate(-1, { replace: true });
+						// 	window.history.back();
+						// }else{
+						// 	window.location.href = '/home';
+						// }
+						prepareMain();
+					}else{
+						Swal.fire({
+							title: 'Perhatian',
+							text: 'Terjadi kesalahan! Silahkan coba lagi.',
+							icon: 'error',
+							confirmButtonText: 'Mengerti',
+						})
+					}
+					
+					}else{
+						Swal.fire({
+							title: 'Perhatian',
+							text: result.message,
+							icon: 'error',
+							confirmButtonText: 'Mengerti'
+						})
+					}
+				}).catch((error)=> {
+					setProgress(false)
+					Swal.fire({
+						title: 'Perhatian',
+						text: 'Terjadi kesalahan! Silahkan coba lagi.',
+						icon: 'error',
+						confirmButtonText: 'Mengerti',
+					})
+				});
+			}else{
+				Swal.fire({
+					title: 'Perhatian',
+					text: 'Email tidak valid!',
+					icon: 'error',
+					confirmButtonText: 'Mengerti',
+				})
+			}
+			
 		}
 	}
 
