@@ -35,9 +35,9 @@ const Catalog = React.memo(() => {
 
     const onSearch = () => {
         if(keyword === ""){
-            navigate('/products');
+            navigate('/search');
         }else{
-            navigate('/products/'+keyword);
+            navigate('/search/'+keyword);
         }
     }
 

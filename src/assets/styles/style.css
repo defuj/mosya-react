@@ -376,7 +376,7 @@ input.middle:focus {
 
 .modal-filter-content {
 	/* border-radius: 24px 24px 0px 0px; */
-	border-radius: 24px;
+	border-radius: 16px;
 }
 
 /* .modal.fade .modal-dialog {
@@ -386,8 +386,8 @@ input.middle:focus {
 	transform: translate3d(0, 0, 0);
 } */
 .button-action-filter {
-	border-radius: 45px;
-	min-height: 45px;
+	border-radius: 10px;
+	min-height: 50px;
 }
 
 .button-action-filter-reset {

@@ -25,6 +25,14 @@ export const slugify = (str) =>
     .replace(/[\s_-]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
+export const searchQuery = (str) =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '+')
+    .replace(/^-+|-+$/g, '');
+
 export const imageUrlToBase64 = async (url, callback) => {
     const axios = require('axios');
     await axios.get(url, {

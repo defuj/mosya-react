@@ -28,6 +28,7 @@ import OrderBill from "./pages/OrderBill";
 import OrderDetail from "./pages/OrderDetail";
 import OrderTracking from "./pages/OrderTracking";
 import { configClass } from "./helper/others";
+import Search from "./pages/Search";
 
 const App = () => {
   useEffect(() => {
@@ -58,6 +59,10 @@ const App = () => {
       <Route path="/products">
         <Route path="" element={<Products/>}/>
         <Route path=":keyword" element={<Products/>}/>
+      </Route>
+      <Route path="/search">
+        <Route path="" element={<Search/>}/>
+        <Route path=":keyword" element={<Search/>}/>
       </Route>
       <Route path="/product">
         <Route path="" element={<Navigate to="/home" replace="true"/>}/>

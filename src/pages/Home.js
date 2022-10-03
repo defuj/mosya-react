@@ -19,9 +19,9 @@ const Home = React.memo(() => {
 
     const onSearch = () => {
         if(keyword === ""){
-            navigate('/products');
+            navigate('/search');
         }else{
-            navigate('/products/'+keyword);
+            navigate('/search/'+keyword);
         }
     }
 
@@ -87,12 +87,12 @@ const Home = React.memo(() => {
                 </div>
             </div>
             <div className="container-brand-text">
-                <Link to="/products" className="bodytext2 text-decoration-none brand-slide active" title="daftar-produk">
+                <Link to="/search" className="bodytext2 text-decoration-none brand-slide active" title="daftar-produk">
                     Semua
                 </Link>
                 
                 {brands.map((item,index) => 
-                    index <= 6 && <Link to={'/products/'+item.name} title={`cari-mobil-${item.name}`} className="bodytext2 text-decoration-none flex-column brand-slide" key={item.id}>
+                    index <= 6 && <Link to={'/search/'+item.name} title={`cari-mobil-${item.name}`} className="bodytext2 text-decoration-none flex-column brand-slide" key={item.id}>
                         {item.name}
                     </Link>
                 )}
@@ -119,7 +119,7 @@ const Home = React.memo(() => {
             <div className="container-products w-100">
                 <div className="w-100 d-flex justify-content-between align-items-center px-3 mt-4">
                     <h2 className="bodytext1 color-black500 font-weight-bold m-0">Mobil Tersedia</h2>
-                    <Link to="/products" className="text-decoration-none" title="daftar-mobil">
+                    <Link to="/search" className="text-decoration-none" title="daftar-mobil">
                         <p className="caption color-green500 semibold m-0">Lainnya</p>
                     </Link>
                 </div>
