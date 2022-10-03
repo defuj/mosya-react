@@ -18,6 +18,7 @@ const UpdatePassword = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+      document.title = "Ubah Kata Sandi";
       setUser(getAccount);
     }, [])
 
@@ -101,7 +102,7 @@ const UpdatePassword = () => {
 
         <div className="align-items-start pt-0 flex-column mt-5">
             <main role="main" className="container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 mt-5">
-                <div className="container-user d-flex justify-content-start flex-column w-100 px-3 py-4 mb-4">
+                <form onSubmit={onSave} className="container-user d-flex justify-content-start flex-column w-100 px-3 py-4 mb-4">
                   <p className="headline5 color-black500 semibold p-0 mb-1">
                     Ubah Kata Sandi
                   </p>
@@ -124,12 +125,12 @@ const UpdatePassword = () => {
                       <input type="password" onChange={e => setConfirmPassword(e.target.value)} id="passwordConfirm" className="form-input bodytext2" placeholder="Konfirmasi Kata Sandi Baru" required/>
                   </div>
 
-                  <button onClick={onSave} id="buttonSave" className="button-action-save text-white background-green500 bodytext1 text-center mt-5">
+                  <button onClick={onSave} type="submit" id="buttonSave" className="button-action-save text-white background-green500 bodytext1 text-center mt-5">
                       {onProgress ? <Spinner /> : "Simpan Perubahan"}
                   </button>
                 
 
-                </div>
+                </form>
             </main>
         </div>
         

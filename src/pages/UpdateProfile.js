@@ -19,6 +19,7 @@ const UpdateProfile = () => {
     const [phone, setPhone] = useState(user.phone);
 
     useEffect(() => {
+        document.title = "Ubah Profil";
         if(checkAccount()){
             setUser(getAccount());
         }

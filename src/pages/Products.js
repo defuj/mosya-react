@@ -28,7 +28,9 @@ const Products = () => {
     const sortCars = (cars) => {
         let res = cars;
         if(keywords !== undefined && keywords !== ''){
-            res = cars.filter((car) => `${car.model.toString().toLowerCase()} ${car.brand.toString().toLowerCase()} ${car.fuel.toString().toLowerCase()} ${car.color.toString().toLowerCase()} ${car.description.toString().toLowerCase()}`.toString().includes(keywords.toString().toLowerCase()));
+            let keyword = slugify(keywords.toLowerCase());
+            res = cars.filter((car) => slugify(`${car.model.toString().toLowerCase()} ${car.brand.toString().toLowerCase()} ${car.fuel.toString().toLowerCase()} ${car.color.toString().toLowerCase()} ${car.description.toString().toLowerCase()}`)
+            .includes(keyword));
         }
 
         if(contentSort === 'all'){
@@ -141,6 +143,10 @@ const Products = () => {
         }
     }
 
+    const goBack = () => {
+        navigate.length > 0 ? navigate(-1) : window.location.href = '/home';
+    }
+
     const resetFilter = () => {
         setFilterColor('Semua');
         setFilterBrand('Semua');
@@ -153,7 +159,7 @@ const Products = () => {
     }
 
     useEffect(() => {
-        document.title = "Mobil Tersedia";
+        document.title = "Pencarian Mobil";
         setKeywords(keyword === undefined ? '' : keyword);
         getCar();
     }, []);
@@ -164,7 +170,7 @@ const Products = () => {
         <nav className="navbar fixed-top bg-white border-bottom shadow-sm px-0">
             <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 m-auto d-flex justify-content-between align-items-center flex-column py-0 px-xl-3 px-lg-3 px-md-3 px-sm-3 px-3">
                 <form onSubmit={onSearch} action="" id="form-search" className="container-search form-search w-100 d-flex justify-content-between align-items-center" style={{height: '48px'}}>
-                    <Link to="" className="navbar-brand" title="back" onClick={() => navigate(-1)}>
+                    <Link to="" className="navbar-brand" title="back" onClick={goBack}>
                         <i className="fi fi-sr-angle-left color-black400 headline6"></i>
                     </Link>
                     <div className="input-group-search background-black50 h-100">

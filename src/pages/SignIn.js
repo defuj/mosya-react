@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import icon from '../assets/images/app_icon_title_h.png';
 import Swal from 'sweetalert2'
 import Spinner from '../components/Spinner';
@@ -8,21 +9,22 @@ import {setAccount} from '../helper/session';
 import { validateEmail } from "../helper/others";
 
 const Signin = () => {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
 	const prepareMain = () => {
-		document.getElementById('body').classList.remove('text-center');
-		document.getElementById('body').classList.add('align-items-start');
-		document.getElementById('body').classList.add('py-0');
-		document.getElementById('body').classList.add('flex-column');
+		// document.getElementById('body').classList.remove('text-center');
+		// document.getElementById('body').classList.add('align-items-start');
+		// document.getElementById('body').classList.add('py-0');
+		// document.getElementById('body').classList.add('flex-column');
 
-		if(navigate.length > 0){
-			navigate(-1, { replace: true });
-			// window.history.back();
-		}else{
-			// navigate('/home');
-			// window.location.href = '/home';
-		}
+		// if(navigate.length > 0){
+		// 	navigate(-1, { replace: true });
+		// 	window.location.reload();
+		// 	// window.history.back();
+		// }else{
+		// 	// navigate('/home');
+		// 	window.location.href = '/home';
+		// }
 		window.location.href = '/home';
 	}
 
@@ -122,7 +124,7 @@ const Signin = () => {
 	}
 
     return (
-        <form className="form-signin text-center" style={{maxWidth: '300px'}}>
+        <form onSubmit={handleSignin} className="form-signin text-center" style={{maxWidth: '300px'}}>
 			<Link to="/home" title="beranda-mosya" className="text-decoration-none">
 				<img className="mb-4 w-100" src={icon} alt="mosya-icon" title="mosya-icon"/>
 			</Link>
@@ -140,7 +142,7 @@ const Signin = () => {
 			{/* <Link to="/forgot_password" title="lupa-kata-sandi" className="mb-3 mt-2 font-weight-normal color-primary float-right bodytext2">
                 Lupa kata sandi?
             </Link> */}
-			<button disabled={onProgress && 'disabled'} onClick={handleSignin} className="btn btn-lg btn-block button-primary bodytext2 mt-3" type="button" id="buttonLogin">
+			<button disabled={onProgress && 'disabled'} onClick={handleSignin} className="btn btn-lg btn-block button-primary bodytext2 mt-3" type="submit" id="buttonLogin">
 				{onProgress ? <Spinner/> : 'Masuk'}
 			</button>
 			<p className="mt-3 mb-1 bodytext2">
