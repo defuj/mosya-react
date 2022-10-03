@@ -139,7 +139,7 @@ const Product = () => {
             </div>
         </nav>
 
-        <main role="main" className="container-car container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 mt-5 pt-4" style={{minHeight: 'calc(100% - 365px)'}}>
+        <main role="main" className="container-car container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 mt-5 pt-4" style={{minHeight: 'calc(100% - 600px)'}}>
             {loading && <Loading />}
 
             {!loading && car === null && <EmptyState/>}
