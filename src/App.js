@@ -29,6 +29,7 @@ import OrderDetail from "./pages/OrderDetail";
 import OrderTracking from "./pages/OrderTracking";
 import { configClass } from "./helper/others";
 import Search from "./pages/Search";
+import Mobil from "./pages/Mobil";
 
 const App = () => {
   useEffect(() => {
@@ -67,6 +68,10 @@ const App = () => {
       <Route path="/product">
         <Route path="" element={<Navigate to="/home" replace="true"/>}/>
         <Route path=":id/:title" element={<Product/>}/>
+      </Route>
+      <Route path="/mobil">
+        <Route path="" element={<Navigate to="/home" replace="true"/>}/>
+        <Route path=":title" element={<Mobil/>}/>
       </Route>
       <Route path="/brands">
         <Route path="" element={<Brands/>}/>

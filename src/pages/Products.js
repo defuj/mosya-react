@@ -115,7 +115,7 @@ const Products = () => {
 
     const CarContent = React.memo(({data, index}) => {
         return (
-            <Link title={`detail-mobil-${slugify(data.model)}`} className="product-items w-50 flex-column lazy" to={`/product/${data.id}/${slugify(data.model)}`} key={index}>
+            <Link title={`detail-mobil-${slugify(data.model)}`} className="product-items w-50 flex-column lazy" to={`/mobil/${data.id}-${slugify(data.model)}`} key={index}>
                 <div className="lazy product-cover mb-2" style={{backgroundImage : `url('${data.image_cover}')`}}></div>
                 <p className="bodytext1 color-black800 semibold m-0 px-2">{data.model}</p>
                 <p className="bodytext2 color-black300 m-0 px-2">{data.year} | {data.color.length > 0 ? `${data.color.length} Warna` : 'Tidak Ada Warna'}</p>
@@ -126,9 +126,9 @@ const Products = () => {
  
     const onSearch = (e) => {  
         if(keywords === ""){
-            navigate('/products', {replace: true});
+            navigate('/search', {replace: true});
         }else{
-            navigate('/products/'+keywords, {replace: true});
+            navigate('/search/'+keywords, {replace: true});
         }
         e.preventDefault();
         getCar();
@@ -138,7 +138,7 @@ const Products = () => {
         setKeywords(keyword);
 
         if(keyword === ""){
-            navigate('/products', {replace: true});
+            navigate('/search', {replace: true});
             getCar();
         }
     }

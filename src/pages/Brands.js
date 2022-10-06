@@ -127,7 +127,7 @@ const Brands = () => {
                 {!onProgress && brands.length > 0 && brands.map((brand, index) => {
                     const countCar = cars.filter(car => car.brand.toString().toLowerCase() === brand.name.toString().toLowerCase()).length;
                     return (
-                    <Link to={`/products/${brand.name}`} title={`daftar-mobil-${brand.name}`} className="merk-item text-decoration-none" key={index}>
+                    <Link to={`/search/${brand.name}`} title={`daftar-mobil-${brand.name}`} className="merk-item text-decoration-none" key={index}>
                         <p className="bodytext1 color-black500 semibold mb-0 merk-name">{brand.name}</p>
                         <p className="caption color-black400 mb-0 merk-car">{countCar > 99 ? '99+ Mobil Tersedia' : countCar === 0 ? 'Tidak Ada Mobil' : countCar+' Mobil Tersedia'}</p>
                     </Link>

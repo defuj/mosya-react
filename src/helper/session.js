@@ -129,6 +129,19 @@ export const setDetailCar = (id, data = {}) => {
     }
 }
 
+export const getAllCar = () => {
+    if (storageAvailable('localStorage')) {
+        return localStorage.getItem('all_car') !== null ? JSON.parse(localStorage.getItem('all_car')) : [];
+    }
+    return [];
+}
+
+export const setAllCar = (data) => {
+    if (storageAvailable('localStorage')) {
+        localStorage.setItem('all_car', JSON.stringify(data));
+    }
+}
+
 export const getListCar = () => {
     if (storageAvailable('localStorage')) {
         return localStorage.getItem('list_car') !== null ? JSON.parse(localStorage.getItem('list_car')) : [];

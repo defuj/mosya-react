@@ -33,6 +33,10 @@ export const searchQuery = (str) =>
     .replace(/[\s_-]+/g, '+')
     .replace(/^-+|-+$/g, '');
 
+export const getNumberInFirstString = (str) => {
+    return str.replace(/(^\d+)(.+$)/i,'$1');
+}
+
 export const imageUrlToBase64 = async (url, callback) => {
     const axios = require('axios');
     await axios.get(url, {

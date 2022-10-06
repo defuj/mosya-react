@@ -3,13 +3,13 @@ import axios, {carlist} from '../helper/axios';
 import Loading from '../components/Loading';
 import EmptyState from '../components/EmptyState';
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getListCar } from "../helper/session";
+import { getAllCar, setAllCar } from "../helper/session";
 import Footer from "../components/Footer";
 import { safeString, slugify } from "../helper/others";
 
 const Search = () => {
     let { keyword } = useParams();
-    const [cars, setCars] = useState(getListCar());
+    const [cars, setCars] = useState(getAllCar());
     const [keywords, setKeywords] = useState(keyword);
     const [loading, setLoading] = useState(true);
     
@@ -66,6 +66,7 @@ const Search = () => {
             let result = response.data;
             if(result.status){
                 let res = result.data;
+                setAllCar(res);
                 
                 if(filterColor !== 'Semua' && filterColor !== ''){
                     res = res.filter((item) => item.color === filterColor)
@@ -105,6 +106,7 @@ const Search = () => {
                 sortCars(res);
             }else{
                 setCars([]);
+                setAllCar([]);
             }
             setLoading(false);
         }).catch(error => {
@@ -115,7 +117,7 @@ const Search = () => {
 
     const CarContent = React.memo(({data, index}) => {
         return (
-            <Link title={`detail-mobil-${slugify(data.model)}`} className="product-items w-50 flex-column lazy" to={`/product/${data.id}/${slugify(data.model)}`} key={index}>
+            <Link title={`detail-mobil-${slugify(data.model)}`} className="product-items w-50 flex-column lazy" to={`/mobil/${data.id}-${slugify(data.model)}`} key={index}>
                 <div className="lazy product-cover mb-2" style={{backgroundImage : `url('${data.image_cover}')`}}></div>
                 <p className="bodytext1 color-black800 semibold m-0 px-2">{data.model}</p>
                 <p className="bodytext2 color-black300 m-0 px-2">{data.year} | {data.color.length > 0 ? `${data.color.length} Warna` : 'Tidak Ada Warna'}</p>
